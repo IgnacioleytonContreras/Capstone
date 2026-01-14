@@ -1,9 +1,12 @@
 import { Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 
+export type UserRole = 'cliente' | 'admin';
+
 export interface User {
   email: string;
   name?: string;
+  role?: UserRole;
 }
 
 @Injectable({
@@ -63,9 +66,14 @@ export class AuthService {
         // Validación básica (en producción, esto debe validarse en el backend)
         if (email && password && password.length >= 6) {
           const token = this.generateToken();
+          
+          // Determinar rol: si el email contiene "admin" es administrador, sino es cliente
+          const role: UserRole = email.toLowerCase().includes('admin') ? 'admin' : 'cliente';
+          
           const user: User = {
             email: email,
-            name: email.split('@')[0]
+            name: email.split('@')[0],
+            role: role
           };
 
           localStorage.setItem(this.TOKEN_KEY, token);
@@ -113,5 +121,20 @@ export class AuthService {
   private generateToken(): string {
     return 'token_' + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
   }
-}
 
+  /**
+   * Verifica si el usuario es administrador
+   */
+  isAdmin(): boolean {
+    const user = this.currentUser();
+    return user?.role === 'admin';
+  }
+
+  /**
+   * Verifica si el usuario es cliente
+   */
+  isCliente(): boolean {
+    const user = this.currentUser();
+    return user?.role === 'cliente';
+  }
+}

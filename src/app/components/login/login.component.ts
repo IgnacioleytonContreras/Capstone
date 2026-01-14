@@ -23,7 +23,12 @@ export class LoginComponent {
   ) {
     
     if (this.authService.isAuthenticated()) {
-      this.router.navigate(['/home']);
+      const user = this.authService.currentUser();
+      if (user?.role === 'admin') {
+        this.router.navigate(['/admin']);
+      } else {
+        this.router.navigate(['/cliente']);
+      }
     }
 
     this.loginForm = this.fb.group({
@@ -42,8 +47,13 @@ export class LoginComponent {
       this.authService.login(email, password).then((success) => {
         this.isLoading.set(false);
         if (success) {
-        
-          this.router.navigate(['/home']);
+          const user = this.authService.currentUser();
+          // Redirigir según el rol
+          if (user?.role === 'admin') {
+            this.router.navigate(['/admin']);
+          } else {
+            this.router.navigate(['/cliente']);
+          }
         } else {
           this.errorMessage.set('Credenciales inválidas. Por favor, intente nuevamente.');
         }
