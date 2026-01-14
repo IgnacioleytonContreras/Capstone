@@ -40,6 +40,27 @@ export class DashboardComponent {
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
+  // ✅ navegación a páginas
+  irANosotros(): void {
+    this.closeMenu();
+    this.router.navigate(['/nosotros']);
+  }
+
+  irAUrgencias(): void {
+    this.closeMenu();
+    this.router.navigate(['/urgencias']);
+  }
+
+  irAServicios(): void {
+    this.closeMenu();
+    this.router.navigate(['/servicios']);
+  }
+
+  irAContacto(): void {
+    this.closeMenu();
+    this.router.navigate(['/contacto']);
+  }
+
   // ✅ cerrar sesión
   logout(): void {
     this.authService.logout();

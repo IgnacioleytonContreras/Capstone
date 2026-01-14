@@ -1,0 +1,129 @@
+<div class="contacto-page">
+  <div class="container">
+    <h1 class="page-title">Contacto</h1>
+    <p class="page-subtitle">Estamos aquí para ayudarte. Contáctanos cuando lo necesites.</p>
+
+    <div class="contact-grid">
+      <!-- Información de Contacto -->
+      <div class="contact-info">
+        <div class="info-card">
+          <div class="info-icon">📍</div>
+          <h3>Dirección</h3>
+          <p>Av. Principal 1234<br>Santiago, Chile</p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon">📞</div>
+          <h3>Teléfono</h3>
+          <p>+56 2 2345 6789<br>Lun - Vie: 08:00 - 20:00</p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon">💬</div>
+          <h3>WhatsApp</h3>
+          <p>+56 9 1234 5678<br>Disponible 24/7</p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon">✉️</div>
+          <h3>Email</h3>
+          <p>contacto@veterinariazift.cl<br>info@veterinariazift.cl</p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon">🕐</div>
+          <h3>Horarios</h3>
+          <p>
+            <strong>Lunes - Viernes:</strong> 08:00 - 20:00<br>
+            <strong>Sábados:</strong> 09:00 - 18:00<br>
+            <strong>Domingos:</strong> 10:00 - 14:00<br>
+            <strong>Urgencias:</strong> 24 horas
+          </p>
+        </div>
+      </div>
+
+      <!-- Formulario de Contacto -->
+      <div class="contact-form">
+        <h2>Envíanos un Mensaje</h2>
+        <form (ngSubmit)="enviarMensaje()" #form="ngForm">
+          <div class="form-group">
+            <label for="nombre">Nombre Completo *</label>
+            <input
+              type="text"
+              id="nombre"
+              [(ngModel)]="contactoForm.nombre"
+              name="nombre"
+              required
+              placeholder="Tu nombre"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input
+              type="email"
+              id="email"
+              [(ngModel)]="contactoForm.email"
+              name="email"
+              required
+              placeholder="correo@ejemplo.com"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="telefono">Teléfono</label>
+            <input
+              type="tel"
+              id="telefono"
+              [(ngModel)]="contactoForm.telefono"
+              name="telefono"
+              placeholder="+56 9 1234 5678"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="asunto">Asunto *</label>
+            <select
+              id="asunto"
+              [(ngModel)]="contactoForm.asunto"
+              name="asunto"
+              required
+            >
+              <option value="">Selecciona un asunto</option>
+              <option value="consulta">Consulta General</option>
+              <option value="urgencia">Urgencia</option>
+              <option value="reserva">Reserva de Hora</option>
+              <option value="servicio">Información de Servicios</option>
+              <option value="otro">Otro</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="mensaje">Mensaje *</label>
+            <textarea
+              id="mensaje"
+              [(ngModel)]="contactoForm.mensaje"
+              name="mensaje"
+              required
+              rows="5"
+              placeholder="Escribe tu mensaje aquí..."
+            ></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit" [disabled]="!form.valid">
+            Enviar Mensaje
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Mapa (placeholder) -->
+    <div class="map-section">
+      <h2>Ubicación</h2>
+      <div class="map-placeholder">
+        <p>📍 Mapa de ubicación</p>
+        <p class="map-note">Aquí se puede integrar Google Maps o cualquier servicio de mapas</p>
+      </div>
+    </div>
+  </div>
+</div>

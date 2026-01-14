@@ -60,11 +60,11 @@
       <button class="menu-btn" (click)="menuOpen = !menuOpen">☰</button>
 
       <nav class="nav-links" [class.open]="menuOpen">
-        <a href="#inicio" (click)="closeMenu()">Inicio</a>
-        <a href="#nosotros" (click)="closeMenu()">Nosotros</a>
-        <a href="#urgencias" (click)="closeMenu()">Urgencias 24 Horas</a>
-        <a href="#servicios" (click)="closeMenu()">Servicios</a>
-        <a href="#contacto" (click)="closeMenu()">Horarios y Contacto</a>
+        <a href="#inicio" (click)="scrollTo('inicio')">Inicio</a>
+        <a (click)="irANosotros()">Nosotros</a>
+        <a (click)="irAUrgencias()">Urgencias 24 Horas</a>
+        <a (click)="irAServicios()">Servicios</a>
+        <a (click)="irAContacto()">Horarios y Contacto</a>
 
         <a class="link-muted" (click)="closeMenu(); irIngresoClientes()">Ingreso Clientes</a>
 

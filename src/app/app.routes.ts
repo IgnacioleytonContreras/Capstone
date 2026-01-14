@@ -30,4 +30,28 @@ export const routes: Routes = [
       import('./pages/reservatuhora/reservatuhora').then(m => m.ReservaTuHora),
     canActivate: [authGuard]
   },
+  {
+    path: 'contacto',
+    loadComponent: () =>
+      import('./pages/contacto/contacto').then(m => m.Contacto),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'nosotros',
+    loadComponent: () =>
+      import('./pages/nosotros/nosotros').then(m => m.Nosotros),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'servicios',
+    loadComponent: () =>
+      import('./pages/servicios/servicios').then(m => m.Servicios),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'urgencias',
+    loadComponent: () =>
+      import('./pages/urgencias/urgencias').then(m => m.Urgencias),
+    canActivate: [authGuard]
+  },
 ];
