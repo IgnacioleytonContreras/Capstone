@@ -21,9 +21,9 @@ export class LoginComponent {
     private authService: AuthService,
     private router: Router
   ) {
-    // Si ya está autenticado, redirigir al dashboard
+    
     if (this.authService.isAuthenticated()) {
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/home']);
     }
 
     this.loginForm = this.fb.group({
@@ -42,7 +42,8 @@ export class LoginComponent {
       this.authService.login(email, password).then((success) => {
         this.isLoading.set(false);
         if (success) {
-          this.router.navigate(['/dashboard']);
+        
+          this.router.navigate(['/home']);
         } else {
           this.errorMessage.set('Credenciales inválidas. Por favor, intente nuevamente.');
         }
@@ -51,7 +52,7 @@ export class LoginComponent {
         this.errorMessage.set('Error al iniciar sesión. Por favor, intente más tarde.');
       });
     } else {
-      // Marcar todos los campos como tocados para mostrar errores
+      
       Object.keys(this.loginForm.controls).forEach(key => {
         this.loginForm.get(key)?.markAsTouched();
       });
@@ -66,4 +67,3 @@ export class LoginComponent {
     return this.loginForm.get('password');
   }
 }
-

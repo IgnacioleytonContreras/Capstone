@@ -1,20 +1,132 @@
-<div class="dashboard-container">
-  <header class="dashboard-header">
-    <div class="header-content">
-      <h1>Panel de Control</h1>
-      <div class="user-info">
-        <span>Bienvenido, {{ authService.currentUser()?.name || authService.currentUser()?.email }}</span>
-        <button class="logout-button" (click)="logout()">Cerrar Sesión</button>
+<div class="site">
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="container topbar-grid">
+      <div class="top-item">
+        <div class="top-ico">🩺</div>
+        <div class="top-txt">
+          <div class="top-title">HORAS MÉDICAS</div>
+          <div class="top-sub">RESERVA AQUÍ</div>
+        </div>
       </div>
+
+      <div class="top-item">
+        <div class="top-ico">📄</div>
+        <div class="top-txt">
+          <div class="top-title">SOLICITUD DE</div>
+          <div class="top-sub">PRESUPUESTOS</div>
+        </div>
+      </div>
+
+      <div class="top-item">
+        <div class="top-ico">🔬</div>
+        <div class="top-txt">
+          <div class="top-title">LABORATORIO</div>
+          <div class="top-sub">RESERVA AQUÍ</div>
+        </div>
+      </div>
+
+      <div class="top-item">
+        <div class="top-ico">💬</div>
+        <div class="top-txt">
+          <div class="top-title">WHATSAPP</div>
+          <div class="top-sub">+56 9 1234 5678</div>
+        </div>
+      </div>
+
+      <div class="top-item">
+        <div class="top-ico">⚡</div>
+        <div class="top-txt">
+          <div class="top-title">URGENCIAS</div>
+          <div class="top-sub urgent">24 HORAS</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER / NAV -->
+  <header class="header">
+    <div class="container nav">
+      <div class="brand">
+        <!-- Cambia por tu logo -->
+        <div class="brand-logo">🐾</div>
+        <div class="brand-name">
+          <div class="brand-main">VETERINARIA</div>
+          <div class="brand-sub">CLÍNICA VETERINARIA</div>
+        </div>
+      </div>
+
+      <button class="menu-btn" (click)="menuOpen = !menuOpen">☰</button>
+
+      <nav class="nav-links" [class.open]="menuOpen">
+        <a href="#inicio" (click)="closeMenu()">Inicio</a>
+        <a href="#nosotros" (click)="closeMenu()">Nosotros</a>
+        <a href="#urgencias" (click)="closeMenu()">Urgencias 24 Horas</a>
+        <a href="#servicios" (click)="closeMenu()">Servicios</a>
+        <a href="#contacto" (click)="closeMenu()">Horarios y Contacto</a>
+
+        <a class="link-muted" (click)="closeMenu(); irIngresoClientes()">Ingreso Clientes</a>
+
+        <button class="cta" (click)="reservarHora()">RESERVA TU HORA</button>
+      </nav>
     </div>
   </header>
 
-  <main class="dashboard-main">
-    <div class="welcome-card">
-      <h2>¡Bienvenido a Veterinaria!</h2>
-      <p>Has iniciado sesión correctamente.</p>
-      <p class="user-email">Correo: {{ authService.currentUser()?.email }}</p>
+  <!-- HERO -->
+  <section id="inicio" class="hero">
+    <!-- Cambia esta imagen por la tuya -->
+    <div
+      class="hero-bg"
+      style="background-image:url('https://images.unsplash.com/photo-1551887373-6aa0f3e0d0f2?auto=format&fit=crop&w=1600&q=80');">
     </div>
-  </main>
-</div>
 
+    <div class="hero-overlay"></div>
+
+    <div class="container hero-content">
+      <h1>Veterinaria Zift</h1>
+      <p>Atención 24 horas, urgencias, hospitalización, cirugías</p>
+
+      <div class="hero-actions">
+        <button class="cta big" (click)="reservarHora()">Reservar hora</button>
+        <button class="ghost" (click)="scrollTo('servicios')">Ver servicios</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIONES -->
+  <main class="container content">
+    <section id="nosotros" class="block">
+      <h2>Nosotros</h2>
+      <p>Texto breve de presentación, equipo, misión y enfoque.</p>
+    </section>
+
+    <section id="urgencias" class="block">
+      <h2>Urgencias 24 Horas</h2>
+      <p>Información de atención urgente, ubicación y teléfono.</p>
+    </section>
+
+    <section id="servicios" class="block">
+      <h2>Servicios</h2>
+      <ul class="services">
+        <li>Consulta general</li>
+        <li>Vacunas</li>
+        <li>Exámenes</li>
+        <li>Peluquería</li>
+      </ul>
+    </section>
+
+    <section id="contacto" class="block">
+      <h2>Horarios y Contacto</h2>
+      <p><b>Horario:</b> Lun a Vie 08:00 - 17:00</p>
+      <p><b>WhatsApp:</b> +56 9 1234 5678</p>
+      <p><b>Dirección:</b> Tu dirección aquí</p>
+
+      <div class="session">
+        <span>Bienvenido, {{ authService.currentUser()?.name || authService.currentUser()?.email }}</span>
+        <button class="logout" (click)="logout()">Cerrar Sesión</button>
+      </div>
+    </section>
+  </main>
+
+</div>
