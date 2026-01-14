@@ -66,4 +66,14 @@ export class DashboardComponent {
     this.authService.logout();
     this.router.navigate(['/login']);
   }
+
+  // ✅ Navegar a área de cliente
+  irACliente(): void {
+    this.router.navigate(['/cliente']);
+  }
+
+  // ✅ Navegar a área de administrador
+  irAAdmin(): void {
+    this.router.navigate(['/admin']);
+  }
 }

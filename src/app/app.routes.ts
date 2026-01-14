@@ -1,8 +1,7 @@
 import { Routes } from '@angular/router';
-import { inject } from '@angular/core';
-import { Router } from '@angular/router';
 import { authGuard } from './guards/auth.guard';
-import { AuthService } from './services/auth.service';
+import { clienteGuard } from './guards/cliente.guard';
+import { adminGuard } from './guards/admin.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -12,24 +11,17 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./components/login/login.component').then(m => m.LoginComponent),
   },
+  {
+    path: 'dashboard',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./components/dashboard/dashboard.component').then(m => m.DashboardComponent),
+  },
 
   // Vista Cliente
   {
     path: 'cliente',
-    canActivate: [authGuard, () => {
-      const authService = inject(AuthService);
-      const router = inject(Router);
-      const user = authService.currentUser();
-      if (user?.role !== 'cliente') {
-        if (user?.role === 'admin') {
-          router.navigate(['/admin']);
-        } else {
-          router.navigate(['/login']);
-        }
-        return false;
-      }
-      return true;
-    }],
+    canActivate: [authGuard, clienteGuard],
     loadComponent: () =>
       import('./layouts/cliente-layout/cliente-layout.component').then(m => m.ClienteLayoutComponent),
     children: [
@@ -85,20 +77,7 @@ export const routes: Routes = [
   // Vista Administrador
   {
     path: 'admin',
-    canActivate: [authGuard, () => {
-      const authService = inject(AuthService);
-      const router = inject(Router);
-      const user = authService.currentUser();
-      if (user?.role !== 'admin') {
-        if (user?.role === 'cliente') {
-          router.navigate(['/cliente']);
-        } else {
-          router.navigate(['/login']);
-        }
-        return false;
-      }
-      return true;
-    }],
+    canActivate: [authGuard, adminGuard],
     loadComponent: () =>
       import('./layouts/admin-layout/admin-layout.component').then(m => m.AdminLayoutComponent),
     children: [
@@ -137,7 +116,6 @@ export const routes: Routes = [
   },
 
   // Redirecciones de compatibilidad
-  { path: 'dashboard', redirectTo: 'cliente/mis-mascotas', pathMatch: 'full' },
-  { path: 'home', redirectTo: 'cliente/mis-mascotas', pathMatch: 'full' },
+  { path: 'home', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: '**', redirectTo: 'login' },
 ];

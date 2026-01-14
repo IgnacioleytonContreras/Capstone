@@ -110,16 +110,51 @@
       </ul>
     </section>
 
+    <!-- Sección de Acceso -->
+    <section id="acceso" class="block access-section">
+      <h2>Bienvenido, {{ authService.currentUser()?.name || authService.currentUser()?.email }}</h2>
+      <p>Selecciona el área a la que deseas acceder:</p>
+      
+      <div class="access-cards">
+        <div class="access-card cliente-card" (click)="irACliente()">
+          <div class="card-icon">🐕</div>
+          <h3>Área de Cliente</h3>
+          <p>Gestiona tus mascotas, agenda citas y revisa tu historial</p>
+          <ul class="features-list">
+            <li>✅ Mis Mascotas</li>
+            <li>✅ Registrar Mascota</li>
+            <li>✅ Agendar Cita</li>
+            <li>✅ Mi Agenda</li>
+          </ul>
+          <button class="access-btn">Entrar como Cliente</button>
+        </div>
+
+        @if (authService.isAdmin()) {
+          <div class="access-card admin-card" (click)="irAAdmin()">
+            <div class="card-icon">⚙️</div>
+            <h3>Área de Administración</h3>
+            <p>Panel de control para veterinarios y recepcionistas</p>
+            <ul class="features-list">
+              <li>✅ Buscar Mascota</li>
+              <li>✅ Atención Médica</li>
+              <li>✅ Registrar Pago</li>
+              <li>✅ Gestión de Citas</li>
+            </ul>
+            <button class="access-btn">Entrar como Administrador</button>
+          </div>
+        }
+      </div>
+
+      <div class="session">
+        <button class="logout" (click)="logout()">Cerrar Sesión</button>
+      </div>
+    </section>
+
     <section id="contacto" class="block">
       <h2>Horarios y Contacto</h2>
       <p><b>Horario:</b> Lun a Vie 08:00 - 17:00</p>
       <p><b>WhatsApp:</b> +56 9 1234 5678</p>
       <p><b>Dirección:</b> Tu dirección aquí</p>
-
-      <div class="session">
-        <span>Bienvenido, {{ authService.currentUser()?.name || authService.currentUser()?.email }}</span>
-        <button class="logout" (click)="logout()">Cerrar Sesión</button>
-      </div>
     </section>
   </main>
 

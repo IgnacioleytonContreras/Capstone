@@ -293,6 +293,127 @@
 .logout:hover { background: #f3f3f3; }
 
 /* ======================
+   ACCESS SECTION
+   ====================== */
+.access-section {
+  text-align: center;
+  padding: 40px 0 !important;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 16px;
+  margin: 30px 0;
+}
+
+.access-section h2 {
+  font-size: 2rem;
+  color: #0b76a8;
+  margin-bottom: 10px;
+}
+
+.access-section > p {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.access-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 900px;
+  margin: 0 auto 30px;
+}
+
+.access-card {
+  background: white;
+  border-radius: 16px;
+  padding: 35px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border-top: 5px solid;
+  text-align: left;
+}
+
+.access-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+.cliente-card {
+  border-top-color: #0b76a8;
+}
+
+.admin-card {
+  border-top-color: #dc3545;
+}
+
+.card-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.access-card h3 {
+  font-size: 1.8rem;
+  margin: 0 0 15px 0;
+  text-align: center;
+  color: #333;
+}
+
+.cliente-card h3 {
+  color: #0b76a8;
+}
+
+.admin-card h3 {
+  color: #dc3545;
+}
+
+.access-card > p {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 25px 0;
+}
+
+.features-list li {
+  padding: 8px 0;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.access-btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.cliente-card .access-btn {
+  background: linear-gradient(135deg, #0b76a8 0%, #5aa6cf 100%);
+  color: white;
+}
+
+.admin-card .access-btn {
+  background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+  color: white;
+}
+
+.access-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* ======================
    RESPONSIVE
    ====================== */
 @media (max-width: 980px) {

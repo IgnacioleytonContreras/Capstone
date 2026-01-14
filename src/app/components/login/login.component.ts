@@ -23,12 +23,7 @@ export class LoginComponent {
   ) {
     
     if (this.authService.isAuthenticated()) {
-      const user = this.authService.currentUser();
-      if (user?.role === 'admin') {
-        this.router.navigate(['/admin']);
-      } else {
-        this.router.navigate(['/cliente']);
-      }
+      this.router.navigate(['/dashboard']);
     }
 
     this.loginForm = this.fb.group({
@@ -47,13 +42,8 @@ export class LoginComponent {
       this.authService.login(email, password).then((success) => {
         this.isLoading.set(false);
         if (success) {
-          const user = this.authService.currentUser();
-          // Redirigir según el rol
-          if (user?.role === 'admin') {
-            this.router.navigate(['/admin']);
-          } else {
-            this.router.navigate(['/cliente']);
-          }
+          // Redirigir al dashboard para elegir área
+          this.router.navigate(['/dashboard']);
         } else {
           this.errorMessage.set('Credenciales inválidas. Por favor, intente nuevamente.');
         }
