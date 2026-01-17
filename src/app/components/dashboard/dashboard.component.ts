@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
@@ -10,37 +10,86 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit, OnDestroy {
   menuOpen = false;
+  year = new Date().getFullYear();
+
+  heroImages = [
+    'assets/images/pexels-tima-miroshnichenko-6234610.jpg',
+    'assets/images/pexels-tima-miroshnichenko-6235007.jpg',
+    'assets/images/pexels-tahir-33998172.jpg',
+  ];
+  currentHeroIndex = 0;
+  private heroIntervalId?: number;
 
   constructor(public authService: AuthService, private router: Router) {}
 
-  // ✅ cierra el menú (para móvil)
+  ngOnInit(): void {
+    this.startHeroCarousel();
+  }
+
+  ngOnDestroy(): void {
+    if (this.heroIntervalId) {
+      window.clearInterval(this.heroIntervalId);
+    }
+  }
+
+  private startHeroCarousel(): void {
+    if (this.heroImages.length <= 1) {
+      return;
+    }
+    this.heroIntervalId = window.setInterval(() => {
+      this.nextHero();
+    }, 5000);
+  }
+
+  prevHero(): void {
+    if (this.heroImages.length === 0) {
+      return;
+    }
+    this.currentHeroIndex =
+      (this.currentHeroIndex - 1 + this.heroImages.length) % this.heroImages.length;
+  }
+
+  nextHero(): void {
+    if (this.heroImages.length === 0) {
+      return;
+    }
+    this.currentHeroIndex = (this.currentHeroIndex + 1) % this.heroImages.length;
+  }
+
+  goToHero(index: number): void {
+    if (index < 0 || index >= this.heroImages.length) {
+      return;
+    }
+    this.currentHeroIndex = index;
+  }
+
   closeMenu(): void {
     this.menuOpen = false;
   }
 
-  // ✅ navega al login de clientes
-  irIngresoClientes(): void {
-    this.closeMenu();
-    this.router.navigate(['/clientes-login']); // asegúrate de tener esta ruta
-  }
-
-  // ✅ botón "RESERVA TU HORA"
   reservarHora(): void {
     this.closeMenu();
-    // Redirige a la página de reserva tu hora
-    this.router.navigate(['/reservatuhora']);
+    this.router.navigate(['/login']);
   }
 
-  // ✅ scroll suave a secciones (#inicio, #servicios, etc.)
-  scrollTo(id: string): void {
+  irIngresoClientes(): void {
+    this.closeMenu();
+    this.router.navigate(['/login']);
+  }
+
+  scrollTo(id: string, event?: Event): void {
+    if (event) {
+      event.preventDefault();
+    }
     this.closeMenu();
     const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 
-  // ✅ navegación a páginas
   irANosotros(): void {
     this.closeMenu();
     this.router.navigate(['/nosotros']);
@@ -61,19 +110,7 @@ export class DashboardComponent {
     this.router.navigate(['/contacto']);
   }
 
-  // ✅ cerrar sesión
-  logout(): void {
-    this.authService.logout();
-    this.router.navigate(['/login']);
-  }
-
-  // ✅ Navegar a área de cliente
-  irACliente(): void {
-    this.router.navigate(['/cliente']);
-  }
-
-  // ✅ Navegar a área de administrador
-  irAAdmin(): void {
-    this.router.navigate(['/admin']);
+  irWhatsapp(): void {
+    window.open('https://wa.me/56912345678', '_blank');
   }
 }

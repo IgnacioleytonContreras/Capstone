@@ -1,0 +1,87 @@
+<div class="admin-dashboard">
+  <div class="header">
+    <div>
+      <h2>Resumen general</h2>
+      <p class="subtitle">Estado actual de la clínica</p>
+    </div>
+    <div class="actions">
+      <button class="btn-outline" type="button" (click)="irBuscarMascota()">Buscar mascota</button>
+      <button class="btn-primary" type="button" (click)="irAtencion()">Atención médica</button>
+      <button class="btn-primary" type="button" (click)="irPagos()">Registrar pago</button>
+    </div>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-title">Mascotas registradas</div>
+      <div class="stat-value">{{ totalMascotas }}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-title">Citas totales</div>
+      <div class="stat-value">{{ totalCitas }}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-title">Programadas</div>
+      <div class="stat-value">{{ citasProgramadas }}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-title">En atención</div>
+      <div class="stat-value">{{ citasEnAtencion }}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-title">Atendidas</div>
+      <div class="stat-value">{{ citasAtendidas }}</div>
+    </div>
+    <div class="stat-card accent">
+      <div class="stat-title">Pagos de hoy</div>
+      <div class="stat-value">{{ pagosHoy }}</div>
+      <div class="stat-sub">Monto: ${{ montoHoy }}</div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="panel">
+      <div class="panel-header">
+        <h3>Últimas citas</h3>
+      </div>
+      @if (!recientesCitas.length) {
+        <p class="muted">No hay citas registradas.</p>
+      } @else {
+        <div class="list">
+          @for (c of recientesCitas; track c.id) {
+            <div class="item">
+              <div>
+                <div class="title">{{ c.nombreMascota }} • {{ c.fecha }} {{ c.hora }}</div>
+                <div class="sub">{{ c.nombreDueno }} • {{ c.servicio }}</div>
+              </div>
+              <span class="badge" [class.warn]="c.estado === 'En atención'" [class.ok]="c.estado === 'Atendida'">
+                {{ c.estado }}
+              </span>
+            </div>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <h3>Últimos pagos</h3>
+      </div>
+      @if (!recientesPagos.length) {
+        <p class="muted">No hay pagos registrados.</p>
+      } @else {
+        <div class="list">
+          @for (p of recientesPagos; track p.id) {
+            <div class="item">
+              <div>
+                <div class="title">{{ p.ownerName }} • ${{ p.monto }}</div>
+                <div class="sub">{{ p.metodo }} • {{ p.ownerEmail }}</div>
+              </div>
+              <span class="badge success">{{ p.creadoEn | date: 'short' }}</span>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</div>

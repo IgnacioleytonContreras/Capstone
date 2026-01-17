@@ -1,0 +1,114 @@
+<div class="atencion-page">
+  <div class="card">
+    <div class="header">
+      <div>
+        <h1>Registrar atención</h1>
+        <p class="subtitle">Completa diagnóstico y tratamiento</p>
+      </div>
+      <button class="btn-secondary" type="button" (click)="volver()">Volver</button>
+    </div>
+
+    <div class="row">
+      <label>
+        Cita
+        <select [(ngModel)]="selectedCitaId" (change)="selectCita($any($event.target).value)">
+          <option value="">Seleccione una cita</option>
+          @for (c of citas; track c.id) {
+            <option [value]="c.id">
+              {{ c.nombreMascota }} • {{ c.nombreDueno }} • {{ c.fecha }} {{ c.hora }}
+            </option>
+          }
+        </select>
+      </label>
+      @if (cita) {
+        <div class="status">
+          Estado: <strong>{{ cita.estado }}</strong>
+        </div>
+      }
+    </div>
+
+    <div class="list">
+      @for (c of citas; track c.id) {
+        <div class="item" (click)="selectCita(c.id)">
+          <div>
+            <div class="title">{{ c.nombreMascota }} • {{ c.fecha }} {{ c.hora }}</div>
+            <div class="sub">{{ c.nombreDueno }} • {{ c.servicio }}</div>
+          </div>
+          <span class="badge" [class.warn]="c.estado === 'En atención'" [class.ok]="c.estado === 'Atendida'">
+            {{ c.estado }}
+          </span>
+        </div>
+      }
+    </div>
+
+    @if (errorMessage) {
+      <div class="error">{{ errorMessage }}</div>
+    }
+    @if (successMessage) {
+      <div class="success">{{ successMessage }}</div>
+    }
+
+    <form [formGroup]="form" (ngSubmit)="guardarConsulta()" novalidate>
+      <div class="form-grid">
+        <div class="form-group full">
+          <label for="diagnostico">Diagnóstico *</label>
+          <textarea
+            id="diagnostico"
+            rows="3"
+            formControlName="diagnostico"
+            [class.error]="submitted && f['diagnostico'].invalid"
+          ></textarea>
+          @if (submitted && f['diagnostico'].errors) {
+            <div class="error-message">El diagnóstico es obligatorio.</div>
+          }
+        </div>
+
+        <div class="form-group full">
+          <label for="tratamiento">Tratamiento *</label>
+          <textarea
+            id="tratamiento"
+            rows="3"
+            formControlName="tratamiento"
+            [class.error]="submitted && f['tratamiento'].invalid"
+          ></textarea>
+          @if (submitted && f['tratamiento'].errors) {
+            <div class="error-message">El tratamiento es obligatorio.</div>
+          }
+        </div>
+
+        <div class="form-group full">
+          <label for="observaciones">Observaciones</label>
+          <textarea
+            id="observaciones"
+            rows="3"
+            formControlName="observaciones"
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="controlFecha">Control futuro</label>
+          <input id="controlFecha" type="date" formControlName="controlFecha" />
+        </div>
+
+        <div class="form-group">
+          <label for="monto">Monto *</label>
+          <input
+            id="monto"
+            type="text"
+            formControlName="monto"
+            [class.error]="submitted && f['monto'].invalid"
+            placeholder="Ej: 35000"
+            (input)="formatMonto($event)"
+          />
+          @if (submitted && f['monto'].errors) {
+            <div class="error-message">El monto es obligatorio.</div>
+          }
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn-primary" type="submit">Guardar y marcar atendida</button>
+      </div>
+    </form>
+  </div>
+</div>

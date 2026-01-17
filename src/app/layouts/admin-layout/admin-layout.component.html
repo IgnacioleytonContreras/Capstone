@@ -1,0 +1,54 @@
+<div class="admin-layout">
+  <!-- Sidebar -->
+  <aside class="sidebar" [class.open]="menuOpen">
+    <div class="sidebar-header">
+      <h2>⚙️ Administración</h2>
+      <button class="close-btn" (click)="closeMenu()" *ngIf="menuOpen">✕</button>
+    </div>
+    
+    <nav class="sidebar-nav">
+      <a (click)="navigateTo('/admin/dashboard')" [class.active]="router.url.includes('/admin/dashboard')">
+        <span class="icon">📊</span>
+        <span>Dashboard</span>
+      </a>
+      <a (click)="navigateTo('/admin/buscar-mascota')" [class.active]="router.url.includes('/buscar-mascota')">
+        <span class="icon">🔍</span>
+        <span>Buscar Mascota</span>
+      </a>
+      <a (click)="navigateTo('/admin/atencion')" [class.active]="router.url.includes('/atencion')">
+        <span class="icon">🩺</span>
+        <span>Atención Médica</span>
+      </a>
+      <a (click)="navigateTo('/admin/registrar-pago')" [class.active]="router.url.includes('/registrar-pago')">
+        <span class="icon">💳</span>
+        <span>Registrar Pago</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-info">
+        <span class="user-name">{{ authService.currentUser()?.name || authService.currentUser()?.email }}</span>
+        <span class="user-role">Administrador</span>
+      </div>
+      <button class="logout-btn" (click)="logout()">Cerrar Sesión</button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Top Bar -->
+    <header class="top-bar">
+      <button class="menu-toggle" (click)="toggleMenu()">☰</button>
+      <h1>Panel de Administración</h1>
+      <div class="user-badge">
+        <span>{{ authService.currentUser()?.name || authService.currentUser()?.email }}</span>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <main class="content-area">
+      <router-outlet />
+    </main>
+  </div>
+</div>
+

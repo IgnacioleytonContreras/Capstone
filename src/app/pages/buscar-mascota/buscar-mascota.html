@@ -1,0 +1,29 @@
+<div class="row">
+  <select [(ngModel)]="campo">
+    <option value="nombre">Nombre</option>
+    <option value="dueno">Dueño</option>
+    <option value="ficha">Ficha</option>
+  </select>
+
+  <input [(ngModel)]="criterio" placeholder="Buscar..." (keyup.enter)="buscar()" />
+  <button (click)="buscar()">Buscar</button>
+</div>
+
+<p class="hint" *ngIf="loading">Buscando...</p>
+<p class="hint" *ngIf="errorMsg && !loading">{{ errorMsg }}</p>
+
+<div class="list" *ngIf="resultados.length">
+  <div class="item" *ngFor="let p of resultados" (click)="verDetalle(p)">
+    <div class="item-row">
+      <div>
+        <div class="title">{{ p.nombre }} <span class="tag">#{{ p.ficha }}</span></div>
+        <div class="sub">{{ p.especie }} • Dueño: {{ p.dueno }} ({{ p.dueno_email }})</div>
+      </div>
+      <button class="btn-delete" type="button" (click)="eliminar(p, $event)">Eliminar</button>
+    </div>
+  </div>
+</div>
+
+<p class="hint" *ngIf="buscado && !loading && !resultados.length && !errorMsg">
+  No se encontraron resultados.
+</p>

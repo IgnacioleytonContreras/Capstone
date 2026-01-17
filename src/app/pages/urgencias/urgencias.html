@@ -1,0 +1,114 @@
+<div class="urgencias-page">
+  <div class="hero-section">
+    <div class="hero-content">
+      <div class="urgent-badge">⚡ URGENCIAS 24 HORAS ⚡</div>
+      <h1>Atención de Emergencias</h1>
+      <p class="hero-subtitle">Estamos disponibles las 24 horas para atender a tu mascota</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Información de Contacto Urgente -->
+    <div class="urgent-contact">
+      <div class="contact-card primary">
+        <div class="contact-icon">📞</div>
+        <h2>Teléfono de Urgencias</h2>
+        <p class="phone-number">+56 9 1234 5678</p>
+        <button class="btn-call" (click)="llamarUrgencia()">Llamar Ahora</button>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-icon">📍</div>
+        <h2>Ubicación</h2>
+        <p>Av. Principal 1234<br>Santiago, Chile</p>
+        <button class="btn-location" (click)="irAUrgencias()">Ver en Mapa</button>
+      </div>
+    </div>
+
+    <!-- Síntomas de Urgencia -->
+    <section class="symptoms-section">
+      <h2 class="section-title">¿Cuándo es una Urgencia?</h2>
+      <p class="section-description">
+        Si tu mascota presenta alguno de estos síntomas, es importante que la traigas 
+        inmediatamente o nos llames de urgencia:
+      </p>
+      <div class="symptoms-grid">
+        @for (sintoma of sintomasUrgentes; track sintoma) {
+          <div class="symptom-card">
+            <div class="symptom-icon">⚠️</div>
+            <p>{{ sintoma }}</p>
+          </div>
+        }
+      </div>
+    </section>
+
+    <!-- Qué Hacer en una Urgencia -->
+    <section class="what-to-do">
+      <h2 class="section-title">¿Qué Hacer en una Emergencia?</h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3>Mantén la Calma</h3>
+          <p>Es importante mantener la calma para poder ayudar mejor a tu mascota.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3>Llámanos Inmediatamente</h3>
+          <p>Comunícate con nosotros al +56 9 1234 5678 para recibir instrucciones.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3>Traslada con Cuidado</h3>
+          <p>Si es necesario trasladar a tu mascota, hazlo con cuidado para no agravar la situación.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <h3>No Administres Medicamentos</h3>
+          <p>No le des medicamentos sin consultar primero, podría empeorar la situación.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Servicios de Urgencia -->
+    <section class="services-section">
+      <h2 class="section-title">Servicios de Urgencia Disponibles</h2>
+      <div class="services-list">
+        <div class="service-item">
+          <div class="service-icon">🏥</div>
+          <div>
+            <h3>Atención Inmediata</h3>
+            <p>Equipo médico disponible las 24 horas para atender emergencias.</p>
+          </div>
+        </div>
+        <div class="service-item">
+          <div class="service-icon">🔬</div>
+          <div>
+            <h3>Diagnóstico Rápido</h3>
+            <p>Laboratorio y equipos de diagnóstico disponibles para evaluaciones urgentes.</p>
+          </div>
+        </div>
+        <div class="service-item">
+          <div class="service-icon">⚕️</div>
+          <div>
+            <h3>Cirugía de Emergencia</h3>
+            <p>Quirófanos equipados para procedimientos quirúrgicos urgentes.</p>
+          </div>
+        </div>
+        <div class="service-item">
+          <div class="service-icon">💉</div>
+          <div>
+            <h3>Tratamiento Intensivo</h3>
+            <p>Área de cuidados intensivos para mascotas que requieren monitoreo constante.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Final -->
+    <div class="cta-final">
+      <h2>¿Tu Mascota Necesita Atención Urgente?</h2>
+      <p>No esperes, llámanos ahora mismo</p>
+      <button class="btn-urgent" (click)="llamarUrgencia()">📞 Llamar Urgencias</button>
+    </div>
+  </div>
+</div>

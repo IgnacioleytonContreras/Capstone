@@ -4,7 +4,7 @@ import { clienteGuard } from './guards/cliente.guard';
 import { adminGuard } from './guards/admin.guard';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
 
   {
     path: 'login',
@@ -12,10 +12,34 @@ export const routes: Routes = [
       import('./components/login/login.component').then(m => m.LoginComponent),
   },
   {
+    path: 'admin-login',
+    loadComponent: () =>
+      import('./components/admin-login/admin-login.component').then(m => m.AdminLoginComponent),
+  },
+  {
     path: 'dashboard',
-    canActivate: [authGuard],
     loadComponent: () =>
       import('./components/dashboard/dashboard.component').then(m => m.DashboardComponent),
+  },
+  {
+    path: 'nosotros',
+    loadComponent: () =>
+      import('./pages/nosotros/nosotros').then(m => m.Nosotros),
+  },
+  {
+    path: 'urgencias',
+    loadComponent: () =>
+      import('./pages/urgencias/urgencias').then(m => m.Urgencias),
+  },
+  {
+    path: 'servicios',
+    loadComponent: () =>
+      import('./pages/servicios/servicios').then(m => m.Servicios),
+  },
+  {
+    path: 'contacto',
+    loadComponent: () =>
+      import('./pages/contacto/contacto').then(m => m.Contacto),
   },
 
   // Vista Cliente
@@ -45,6 +69,11 @@ export const routes: Routes = [
         path: 'mi-agenda',
         loadComponent: () =>
           import('./pages/mi-agenda/mi-agenda').then(m => m.MiAgenda),
+      },
+      {
+        path: 'mascota-detalle/:id',
+        loadComponent: () =>
+          import('./pages/mascota-detalle/mascota-detalle').then(m => m.MascotaDetalle),
       },
       {
         path: 'reservatuhora',
@@ -81,7 +110,12 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./layouts/admin-layout/admin-layout.component').then(m => m.AdminLayoutComponent),
     children: [
-      { path: '', redirectTo: 'buscar-mascota', pathMatch: 'full' },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      {
+        path: 'dashboard',
+        loadComponent: () =>
+          import('./pages/admin-dashboard/admin-dashboard').then(m => m.AdminDashboard),
+      },
       {
         path: 'buscar-mascota',
         loadComponent: () =>

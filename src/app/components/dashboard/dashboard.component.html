@@ -60,11 +60,12 @@
       <button class="menu-btn" (click)="menuOpen = !menuOpen">☰</button>
 
       <nav class="nav-links" [class.open]="menuOpen">
-        <a href="#inicio" (click)="scrollTo('inicio')">Inicio</a>
+        <a href="#inicio" (click)="scrollTo('inicio', $event)">Inicio</a>
         <a (click)="irANosotros()">Nosotros</a>
         <a (click)="irAUrgencias()">Urgencias 24 Horas</a>
         <a (click)="irAServicios()">Servicios</a>
         <a (click)="irAContacto()">Horarios y Contacto</a>
+        <a class="admin-link" routerLink="/admin-login" (click)="closeMenu()">Ingreso admin</a>
         <button class="cta" (click)="reservarHora()">RESERVA TU HORA</button>
       </nav>
     </div>
@@ -75,7 +76,7 @@
     <!-- Cambia esta imagen por la tuya -->
     <div
       class="hero-bg"
-      style="background-image: url('assets/images/images.jfif');">
+      [style.backgroundImage]="'url(' + heroImages[currentHeroIndex] + ')'">
     </div>
 
     <div class="hero-overlay"></div>
@@ -86,76 +87,119 @@
 
       <div class="hero-actions">
         <button class="cta big" (click)="reservarHora()">Reservar hora</button>
-        <button class="ghost" (click)="scrollTo('servicios')">Ver servicios</button>
+        <button class="ghost whatsapp" (click)="irWhatsapp()">WhatsApp</button>
       </div>
+    </div>
+
+    <button class="hero-arrow left" (click)="prevHero()" aria-label="Imagen anterior">‹</button>
+    <button class="hero-arrow right" (click)="nextHero()" aria-label="Imagen siguiente">›</button>
+    <div class="hero-dots">
+      @for (img of heroImages; track $index) {
+        <button
+          class="dot"
+          [class.active]="currentHeroIndex === $index"
+          (click)="goToHero($index)"
+          aria-label="Ir a imagen" 
+        ></button>
+      }
     </div>
   </section>
 
   <!-- SECCIONES -->
   <main class="container content">
-    
 
-    <section id="urgencias" class="block">
-      <h2>Urgencias 24 Horas</h2>
-      <p>Información de atención urgente, ubicación y teléfono.</p>
+    <section class="block reserve">
+      <h2>Reserva tu hora</h2>
+      <p class="muted">Para una mejor atención, reserva hora para:</p>
+
+      <div class="pill-grid">
+        <span class="pill">Consultas generales</span>
+        <span class="pill">Consultas especialistas</span>
+        <span class="pill">Controles</span>
+        <span class="pill">Exámenes</span>
+        <span class="pill">Vacunas</span>
+        <span class="pill">Evaluación pre quirúrgica</span>
+        <span class="pill">Peluquería</span>
+        <span class="pill">Microchip</span>
+      </div>
+
+      <div class="reserve-actions">
+        <button class="cta" type="button" (click)="reservarHora()">Reserva tu hora</button>
+        <button class="ghost" type="button" (click)="irIngresoClientes()">Ingreso Clientes</button>
+      </div>
     </section>
 
-    <section id="servicios" class="block">
-      <h2>Servicios</h2>
-      <ul class="services">
-        <li>Consulta general</li>
-        <li>Vacunas</li>
-        <li>Exámenes</li>
-        <li>Peluquería</li>
-      </ul>
+    <section class="block quick">
+      <h2>Servicios destacados</h2>
+
+      <div class="cards">
+        <article class="card">
+          <div class="card-ico">🩺</div>
+          <h3>Urgencias 24 Horas</h3>
+          <p>Atención inmediata para accidentes y urgencias.</p>
+          <button class="link" type="button" (click)="irAUrgencias()">Ver más</button>
+        </article>
+
+        <article class="card">
+          <div class="card-ico">🫀</div>
+          <h3>Cirugías</h3>
+          <p>Cirugías y procedimientos con profesionales.</p>
+          <button class="link" type="button" (click)="irAServicios()">Ver más</button>
+        </article>
+
+        <!-- tarjetas eliminadas -->
+      </div>
     </section>
 
-    <!-- Sección de Acceso -->
-    <section id="acceso" class="block access-section">
-      <h2>Bienvenido, {{ authService.currentUser()?.name || authService.currentUser()?.email }}</h2>
-      <p>Selecciona el área a la que deseas acceder:</p>
-      
-      <div class="access-cards">
-        <div class="access-card cliente-card" (click)="irACliente()">
-          <div class="card-icon">🐕</div>
-          <h3>Área de Cliente</h3>
-          <p>Gestiona tus mascotas, agenda citas y revisa tu historial</p>
-          <ul class="features-list">
-            <li>✅ Mis Mascotas</li>
-            <li>✅ Registrar Mascota</li>
-            <li>✅ Agendar Cita</li>
-            <li>✅ Mi Agenda</li>
-          </ul>
-          <button class="access-btn">Entrar como Cliente</button>
+    <section class="block contact">
+      <h2>Contacto</h2>
+      <div class="contact-grid">
+        <div class="contact-box">
+          <h3>Dirección</h3>
+          <p>Av.,<br>Santiago de Chile</p>
+
+          <h3>Teléfono</h3>
+          <p>+562 22722453<br>+562 22654445</p>
+
+          <h3>WhatsApp</h3>
+          <p>+56 9 1234 5478</p>
+
+          <button class="ghost" type="button" (click)="irWhatsapp()">Abrir WhatsApp</button>
         </div>
 
-        @if (authService.isAdmin()) {
-          <div class="access-card admin-card" (click)="irAAdmin()">
-            <div class="card-icon">⚙️</div>
-            <h3>Área de Administración</h3>
-            <p>Panel de control para veterinarios y recepcionistas</p>
-            <ul class="features-list">
-              <li>✅ Buscar Mascota</li>
-              <li>✅ Atención Médica</li>
-              <li>✅ Registrar Pago</li>
-              <li>✅ Gestión de Citas</li>
-            </ul>
-            <button class="access-btn">Entrar como Administrador</button>
-          </div>
-        }
-      </div>
+        <form class="contact-form" (submit)="$event.preventDefault()">
+          <label>
+            Nombre
+            <input type="text" placeholder="Tu nombre" />
+          </label>
 
-      <div class="session">
-        <button class="logout" (click)="logout()">Cerrar Sesión</button>
+          <label>
+            E-mail
+            <input type="email" placeholder="tu@correo.com" />
+          </label>
+
+          <label>
+            Teléfono
+            <input type="tel" placeholder="+56 9..." />
+          </label>
+
+          <label>
+            Mensaje
+            <textarea rows="4" placeholder="Escribe tu mensaje..."></textarea>
+          </label>
+
+          <button class="cta" type="submit">Enviar mensaje</button>
+        </form>
       </div>
     </section>
 
-    <section id="contacto" class="block">
-      <h2>Horarios y Contacto</h2>
-      <p><b>Horario:</b> Lun a Vie 08:00 - 17:00</p>
-      <p><b>WhatsApp:</b> +56 9 1234 5678</p>
-      <p><b>Dirección:</b> Tu dirección aquí</p>
-    </section>
   </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>© {{year}} Veterinaria Zift</span>
+      <span class="muted">Atención 24/7</span>
+    </div>
+  </footer>
 
 </div>

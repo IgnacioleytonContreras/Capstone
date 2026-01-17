@@ -1,0 +1,129 @@
+<div class="nosotros-page">
+  <div class="hero-section">
+    <div class="hero-content">
+      <h1>Nosotros</h1>
+      <p class="hero-subtitle">Más de 15 años cuidando la salud de tus mascotas</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Misión y Visión -->
+    <section class="section">
+      <div class="mission-vision">
+        <div class="card">
+          <div class="card-icon">🎯</div>
+          <h2>Nuestra Misión</h2>
+          <p>
+            Proporcionar atención veterinaria de excelencia, con profesionalismo, 
+            dedicación y cariño, asegurando el bienestar y la salud de las mascotas 
+            que forman parte de las familias chilenas.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">👁️</div>
+          <h2>Nuestra Visión</h2>
+          <p>
+            Ser la clínica veterinaria de referencia en la región, reconocida por 
+            nuestra calidad de servicio, tecnología de vanguardia y compromiso 
+            constante con el cuidado animal.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Historia -->
+    <section class="section">
+      <h2 class="section-title">Nuestra Historia</h2>
+      <div class="history-content">
+        <p>
+          Veterinaria Zift fue fundada en 2008 con el objetivo de brindar atención 
+          veterinaria integral y de calidad. Desde nuestros inicios, nos hemos 
+          comprometido con el bienestar animal y la satisfacción de nuestros clientes.
+        </p>
+        <p>
+          A lo largo de los años, hemos crecido y mejorado constantemente, incorporando 
+          tecnología de última generación y ampliando nuestros servicios para ofrecer 
+          una atención completa que incluye consultas, cirugías, urgencias 24 horas, 
+          hospitalización y más.
+        </p>
+        <p>
+          Nuestro equipo de profesionales altamente capacitados trabaja con pasión 
+          y dedicación para brindar el mejor cuidado a cada mascota que llega a 
+          nuestras instalaciones.
+        </p>
+      </div>
+    </section>
+
+    <!-- Valores -->
+    <section class="section">
+      <h2 class="section-title">Nuestros Valores</h2>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon">❤️</div>
+          <h3>Compasión</h3>
+          <p>Tratamos a cada mascota con el mismo cariño que le darías tú.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🎓</div>
+          <h3>Profesionalismo</h3>
+          <p>Equipo altamente capacitado y en constante actualización.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🤝</div>
+          <h3>Compromiso</h3>
+          <p>Dedicación total al bienestar de tus mascotas.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">⚡</div>
+          <h3>Disponibilidad</h3>
+          <p>Atención de urgencias 24 horas, cuando más lo necesitas.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🔬</div>
+          <h3>Excelencia</h3>
+          <p>Utilizamos tecnología de vanguardia en todos nuestros servicios.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">💬</div>
+          <h3>Comunicación</h3>
+          <p>Transparencia y claridad en cada diagnóstico y tratamiento.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Equipo -->
+    <section class="section">
+      <h2 class="section-title">Nuestro Equipo</h2>
+      <div class="team-grid">
+        @for (miembro of equipo; track miembro.nombre) {
+          <div class="team-card">
+            <div class="team-avatar">{{ miembro.imagen }}</div>
+            <h3>{{ miembro.nombre }}</h3>
+            <p class="team-cargo">{{ miembro.cargo }}</p>
+            <p class="team-especialidad">{{ miembro.especialidad }}</p>
+          </div>
+        }
+      </div>
+    </section>
+
+    <!-- Instalaciones -->
+    <section class="section">
+      <h2 class="section-title">Nuestras Instalaciones</h2>
+      <div class="facilities-content">
+        <p>
+          Contamos con instalaciones modernas y equipadas con tecnología de última 
+          generación para brindar el mejor servicio:
+        </p>
+        <ul class="facilities-list">
+          <li>🏥 Quirófanos equipados para cirugías</li>
+          <li>🔬 Laboratorio de análisis clínicos</li>
+          <li>📷 Equipos de radiografía y ecografía</li>
+          <li>🏥 Área de hospitalización</li>
+          <li>⚡ Sala de urgencias 24 horas</li>
+          <li>🛁 Área de peluquería y estética</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</div>

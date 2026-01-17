@@ -1,0 +1,101 @@
+.row{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+  margin:12px 0;
+}
+
+select{
+  padding:12px;
+  border-radius:10px;
+  border:1px solid #dbe7f5;
+  background:#fff;
+  font-weight:700;
+  min-width:140px;
+}
+
+input{
+  flex:1;
+  min-width:240px;
+  padding:12px;
+  border-radius:10px;
+  border:1px solid #dbe7f5;
+}
+
+button{
+  padding:12px 14px;
+  border-radius:10px;
+  border:0;
+  background:#0b76a8;
+  color:#fff;
+  font-weight:900;
+  cursor:pointer;
+}
+
+button:hover{ filter:brightness(.95); }
+
+.hint{
+  color:#6b7a90;
+  margin-top:8px;
+}
+
+.list{
+  margin-top:12px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.item{
+  border:1px solid #eef3fa;
+  border-radius:12px;
+  padding:12px;
+  cursor:pointer;
+  transition: background .12s ease, transform .06s ease;
+}
+
+.item-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.item:hover{
+  background:#f7fbff;
+  transform: translateY(-1px);
+}
+
+.title{
+  font-weight:900;
+}
+
+.tag{
+  color:#0b76a8;
+  font-weight:900;
+}
+
+.sub{
+  color:#586a85;
+  margin-top:4px;
+}
+
+.btn-delete{
+  background:#e11d48;
+  color:#fff;
+  border:0;
+  border-radius:10px;
+  padding:10px 12px;
+  font-weight:900;
+  cursor:pointer;
+}
+.btn-delete:hover{ filter:brightness(.95); }
+
+@media (max-width: 520px){
+  select{ width:100%; }
+  input{ width:100%; }
+  button{ width:100%; }
+  .item-row{ flex-direction:column; align-items:flex-start; }
+  .btn-delete{ width:100%; }
+}

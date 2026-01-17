@@ -47,7 +47,13 @@ export class AuthService {
     const userStr = localStorage.getItem(this.USER_KEY);
     if (userStr) {
       try {
-        return JSON.parse(userStr);
+        const user = JSON.parse(userStr) as User;
+        // Si no tiene rol guardado (usuarios antiguos), asumir cliente
+        if (!user.role) {
+          user.role = 'cliente';
+          localStorage.setItem(this.USER_KEY, JSON.stringify(user));
+        }
+        return user;
       } catch {
         return null;
       }
@@ -98,7 +104,7 @@ export class AuthService {
     localStorage.removeItem(this.USER_KEY);
     this._isAuthenticated.set(false);
     this.currentUser.set(null);
-    this.router.navigate(['/login']);
+    this.router.navigate(['/dashboard']);
   }
 
   /**

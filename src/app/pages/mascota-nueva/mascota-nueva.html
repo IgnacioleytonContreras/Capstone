@@ -1,0 +1,126 @@
+<div class="mascota-nueva-page">
+  <div class="card">
+    <h1>Registrar Mascota</h1>
+    <p class="subtitle">Completa los datos para crear la ficha de tu mascota</p>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+      <div class="form-grid">
+        <!-- Nombre -->
+        <div class="form-group">
+          <label for="nombre">Nombre *</label>
+          <input
+            id="nombre"
+            type="text"
+            formControlName="nombre"
+            [class.error]="submitted && f['nombre'].invalid"
+            placeholder="Ej: Firulais"
+          />
+          @if (submitted && f['nombre'].errors) {
+            <div class="error-message">
+              @if (f['nombre'].errors['required']) {
+                El nombre es obligatorio.
+              }
+            </div>
+          }
+        </div>
+
+        <!-- Especie -->
+        <div class="form-group">
+          <label for="especie">Especie *</label>
+          <input
+            id="especie"
+            type="text"
+            formControlName="especie"
+            [class.error]="submitted && f['especie'].invalid"
+            placeholder="Ej: Perro, Gato"
+          />
+          @if (submitted && f['especie'].errors) {
+            <div class="error-message">
+              La especie es obligatoria.
+            </div>
+          }
+        </div>
+
+        <!-- Raza -->
+        <div class="form-group">
+          <label for="raza">Raza *</label>
+          <input
+            id="raza"
+            type="text"
+            formControlName="raza"
+            [class.error]="submitted && f['raza'].invalid"
+            placeholder="Ej: Labrador, Mestizo"
+          />
+          @if (submitted && f['raza'].errors) {
+            <div class="error-message">
+              La raza es obligatoria.
+            </div>
+          }
+        </div>
+
+        <!-- Sexo -->
+        <div class="form-group">
+          <label for="sexo">Sexo *</label>
+          <select
+            id="sexo"
+            formControlName="sexo"
+            [class.error]="submitted && f['sexo'].invalid"
+          >
+            <option value="">Seleccione</option>
+            @for (sexo of sexOptions; track sexo) {
+              <option [value]="sexo">{{ sexo }}</option>
+            }
+          </select>
+          @if (submitted && f['sexo'].errors) {
+            <div class="error-message">
+              El sexo es obligatorio.
+            </div>
+          }
+        </div>
+
+        <!-- Fecha de nacimiento -->
+        <div class="form-group">
+          <label for="fechaNacimiento">Fecha de nacimiento *</label>
+          <input
+            id="fechaNacimiento"
+            type="date"
+            formControlName="fechaNacimiento"
+            [class.error]="submitted && f['fechaNacimiento'].invalid"
+          />
+          @if (submitted && f['fechaNacimiento'].errors) {
+            <div class="error-message">
+              La fecha de nacimiento es obligatoria.
+            </div>
+          }
+        </div>
+
+        <!-- Peso -->
+        <div class="form-group">
+          <label for="pesoKg">Peso (kg) *</label>
+          <input
+            id="pesoKg"
+            type="number"
+            step="0.1"
+            min="0"
+            formControlName="pesoKg"
+            [class.error]="submitted && f['pesoKg'].invalid"
+            placeholder="Ej: 5.3"
+          />
+          @if (submitted && f['pesoKg'].errors) {
+            <div class="error-message">
+              @if (f['pesoKg'].errors['required']) {
+                El peso es obligatorio.
+              } @else if (f['pesoKg'].errors['min']) {
+                El peso debe ser mayor a 0.
+              }
+            </div>
+          }
+        </div>
+      </div>
+
+      <button type="submit" class="btn-primary">
+        Registrar Mascota
+      </button>
+    </form>
+  </div>
+</div>

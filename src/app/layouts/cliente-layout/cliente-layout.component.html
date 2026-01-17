@@ -1,0 +1,54 @@
+<div class="cliente-layout">
+  <!-- Sidebar -->
+  <aside class="sidebar" [class.open]="menuOpen">
+    <div class="sidebar-header">
+      <h2>🐾 Veterinaria</h2>
+      <button class="close-btn" (click)="closeMenu()" *ngIf="menuOpen">✕</button>
+    </div>
+    
+    <nav class="sidebar-nav">
+      <a (click)="navigateTo('/cliente/mis-mascotas')" [class.active]="router.url.includes('/mis-mascotas')">
+        <span class="icon">🐕</span>
+        <span>Mis Mascotas</span>
+      </a>
+      <a (click)="navigateTo('/cliente/mascota-nueva')" [class.active]="router.url.includes('/mascota-nueva')">
+        <span class="icon">➕</span>
+        <span>Registrar Mascota</span>
+      </a>
+      <a (click)="navigateTo('/cliente/agendar-cita')" [class.active]="router.url.includes('/agendar-cita')">
+        <span class="icon">📅</span>
+        <span>Agendar Cita</span>
+      </a>
+      <a (click)="navigateTo('/cliente/mi-agenda')" [class.active]="router.url.includes('/mi-agenda')">
+        <span class="icon">📋</span>
+        <span>Mi Agenda</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-info">
+        <span class="user-name">{{ authService.currentUser()?.name || authService.currentUser()?.email }}</span>
+        <span class="user-role">Cliente</span>
+      </div>
+      <button class="logout-btn" (click)="logout()">Cerrar Sesión</button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Top Bar -->
+    <header class="top-bar">
+      <button class="menu-toggle" (click)="toggleMenu()">☰</button>
+      <h1>Área de Cliente</h1>
+      <div class="user-badge">
+        <span>{{ authService.currentUser()?.name || authService.currentUser()?.email }}</span>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <main class="content-area">
+      <router-outlet />
+    </main>
+  </div>
+</div>
+

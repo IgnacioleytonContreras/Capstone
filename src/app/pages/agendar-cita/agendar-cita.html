@@ -1,0 +1,148 @@
+<div class="agendar-cita-page">
+  <div class="card">
+    <div class="header">
+      <div>
+        <h1>Agendar cita</h1>
+        <p class="subtitle">Completa los datos para reservar una hora</p>
+      </div>
+      <button class="btn-secondary" type="button" (click)="volver()">Ver mi agenda</button>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="nombreDueno">Nombre del dueño *</label>
+          <input
+            id="nombreDueno"
+            type="text"
+            formControlName="nombreDueno"
+            [class.error]="submitted && f['nombreDueno'].invalid"
+            placeholder="Ej: Luis Pérez"
+          />
+          @if (submitted && f['nombreDueno'].errors) {
+            <div class="error-message">El nombre es obligatorio.</div>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            [class.error]="submitted && f['email'].invalid"
+            placeholder="ejemplo@mail.com"
+          />
+          @if (submitted && f['email'].errors) {
+            <div class="error-message">Ingresa un email válido.</div>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="telefono">Teléfono *</label>
+          <input
+            id="telefono"
+            type="tel"
+            formControlName="telefono"
+            [class.error]="submitted && f['telefono'].invalid"
+            placeholder="+56 9 1234 5678"
+          />
+          @if (submitted && f['telefono'].errors) {
+            <div class="error-message">El teléfono es obligatorio.</div>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="nombreMascota">Nombre de la mascota *</label>
+          <input
+            id="nombreMascota"
+            type="text"
+            formControlName="nombreMascota"
+            [class.error]="submitted && f['nombreMascota'].invalid"
+            placeholder="Ej: Firu"
+          />
+          @if (submitted && f['nombreMascota'].errors) {
+            <div class="error-message">El nombre de la mascota es obligatorio.</div>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="especie">Especie *</label>
+          <input
+            id="especie"
+            type="text"
+            formControlName="especie"
+            [class.error]="submitted && f['especie'].invalid"
+            placeholder="Perro, Gato..."
+          />
+          @if (submitted && f['especie'].errors) {
+            <div class="error-message">La especie es obligatoria.</div>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="servicio">Servicio *</label>
+          <select
+            id="servicio"
+            formControlName="servicio"
+            [class.error]="submitted && f['servicio'].invalid"
+          >
+            <option value="">Seleccione</option>
+            <option value="consulta">Consulta general</option>
+            <option value="vacunas">Vacunas</option>
+            <option value="control">Control</option>
+            <option value="cirugia">Cirugía</option>
+            <option value="urgencia">Urgencia</option>
+          </select>
+          @if (submitted && f['servicio'].errors) {
+            <div class="error-message">Selecciona un servicio.</div>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="fecha">Fecha *</label>
+          <input
+            id="fecha"
+            type="date"
+            formControlName="fecha"
+            [class.error]="submitted && f['fecha'].invalid"
+          />
+          @if (submitted && f['fecha'].errors) {
+            <div class="error-message">La fecha es obligatoria.</div>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="hora">Hora *</label>
+          <input
+            id="hora"
+            type="time"
+            formControlName="hora"
+            [class.error]="submitted && f['hora'].invalid"
+          />
+          @if (submitted && f['hora'].errors) {
+            <div class="error-message">La hora es obligatoria.</div>
+          }
+        </div>
+
+        <div class="form-group full">
+          <label for="notas">Notas</label>
+          <textarea
+            id="notas"
+            rows="3"
+            formControlName="notas"
+            placeholder="Comentarios adicionales"
+          ></textarea>
+        </div>
+      </div>
+
+      @if (successMessage) {
+        <div class="success">{{ successMessage }}</div>
+      }
+
+      <div class="actions">
+        <button class="btn-primary" type="submit">Agendar cita</button>
+      </div>
+    </form>
+  </div>
+</div>
