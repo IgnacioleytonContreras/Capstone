@@ -139,6 +139,9 @@
       @if (successMessage) {
         <div class="success">{{ successMessage }}</div>
       }
+      @if (emailError) {
+        <div class="error-message">{{ emailError }}</div>
+      }
 
       <div class="actions">
         <button class="btn-primary" type="submit">Agendar cita</button>

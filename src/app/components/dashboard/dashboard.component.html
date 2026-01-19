@@ -63,7 +63,16 @@
         <a href="#inicio" (click)="scrollTo('inicio', $event)">Inicio</a>
         <a (click)="irANosotros()">Nosotros</a>
         <a (click)="irAUrgencias()">Urgencias 24 Horas</a>
-        <a (click)="irAServicios()">Servicios</a>
+        <div class="dropdown">
+          <button class="dropbtn" type="button" (click)="toggleServicios()">
+            Servicios <span class="caret">▾</span>
+          </button>
+          <div class="dropdown-menu" [class.show]="serviciosOpen">
+            @for (servicio of serviciosList; track $index) {
+              <button type="button">{{ servicio }}</button>
+            }
+          </div>
+        </div>
         <a (click)="irAContacto()">Horarios y Contacto</a>
         <a class="admin-link" routerLink="/admin-login" (click)="closeMenu()">Ingreso admin</a>
         <button class="cta" (click)="reservarHora()">RESERVA TU HORA</button>
@@ -113,14 +122,9 @@
       <p class="muted">Para una mejor atención, reserva hora para:</p>
 
       <div class="pill-grid">
-        <span class="pill">Consultas generales</span>
-        <span class="pill">Consultas especialistas</span>
-        <span class="pill">Controles</span>
-        <span class="pill">Exámenes</span>
-        <span class="pill">Vacunas</span>
-        <span class="pill">Evaluación pre quirúrgica</span>
-        <span class="pill">Peluquería</span>
-        <span class="pill">Microchip</span>
+        @for (servicio of serviciosList; track $index) {
+          <span class="pill">{{ servicio }}</span>
+        }
       </div>
 
       <div class="reserve-actions">

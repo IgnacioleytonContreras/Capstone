@@ -22,7 +22,8 @@ export class AdminDashboard implements OnInit {
   montoHoy = 0;
 
   recientesCitas: Appointment[] = [];
-  recientesPagos: PaymentRecord[] = [];
+  recientesPagos: Array<PaymentRecord & { appointment?: Appointment }> = [];
+  pagoExpandidoId: string | null = null;
 
   constructor(
     private petService: PetService,
@@ -50,9 +51,14 @@ export class AdminDashboard implements OnInit {
     this.recientesCitas = [...citas]
       .sort((a, b) => b.creadoEn.localeCompare(a.creadoEn))
       .slice(0, 5);
+    const citasById = new Map(citas.map(cita => [cita.id, cita]));
     this.recientesPagos = [...pagos]
       .sort((a, b) => b.creadoEn.localeCompare(a.creadoEn))
-      .slice(0, 5);
+      .slice(0, 5)
+      .map(pago => ({
+        ...pago,
+        appointment: citasById.get(pago.appointmentId),
+      }));
   }
 
   irAtencion(): void {
@@ -65,5 +71,9 @@ export class AdminDashboard implements OnInit {
 
   irBuscarMascota(): void {
     this.router.navigate(['/admin/buscar-mascota']);
+  }
+
+  togglePagoDetalle(pagoId: string): void {
+    this.pagoExpandidoId = this.pagoExpandidoId === pagoId ? null : pagoId;
   }
 }

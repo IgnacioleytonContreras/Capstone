@@ -94,6 +94,8 @@
   background:transparent;
   color:inherit;
   font-weight:700;
+  font-size:14px;
+  line-height:1;
   cursor:pointer;
   padding:10px 10px;
   border-radius:12px;

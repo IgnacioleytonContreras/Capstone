@@ -72,10 +72,24 @@
       } @else {
         <div class="list">
           @for (p of recientesPagos; track p.id) {
-            <div class="item">
+            <div class="item" (click)="togglePagoDetalle(p.id)" style="cursor: pointer;">
               <div>
-                <div class="title">{{ p.ownerName }} • ${{ p.monto }}</div>
-                <div class="sub">{{ p.metodo }} • {{ p.ownerEmail }}</div>
+                <div class="title">{{ p.ownerName }} • ${{ p.monto }} • {{ p.metodo }}</div>
+                @if (pagoExpandidoId === p.id) {
+                  <div class="sub">{{ p.ownerEmail }} • Registrado por: {{ p.creadoPor }}</div>
+                  @if (p.appointment) {
+                    <div class="sub">
+                      Mascota: {{ p.appointment.nombreMascota }} • {{ p.appointment.especie }} •
+                      {{ p.appointment.servicio }}
+                    </div>
+                    <div class="sub">
+                      Cita: {{ p.appointment.fecha }} {{ p.appointment.hora }} •
+                      Estado: {{ p.appointment.estado }}
+                    </div>
+                  } @else {
+                    <div class="sub">Mascota: sin datos de cita</div>
+                  }
+                }
               </div>
               <span class="badge success">{{ p.creadoEn | date: 'short' }}</span>
             </div>
