@@ -12,7 +12,17 @@ import { AuthService } from '../../services/auth.service';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   menuOpen = false;
+  serviciosOpen = false;
   year = new Date().getFullYear();
+
+  serviciosList = [
+    'Consultas generales',
+    'Consultas especialistas',
+    'Controles',
+    'Exámenes',
+    'Vacunas',
+    'Evaluación pre quirúrgica',
+  ];
 
   heroImages = [
     'assets/images/pexels-tima-miroshnichenko-6234610.jpg',
@@ -67,6 +77,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   closeMenu(): void {
     this.menuOpen = false;
+    this.serviciosOpen = false;
+  }
+
+  toggleServicios(): void {
+    this.serviciosOpen = !this.serviciosOpen;
   }
 
   reservarHora(): void {
