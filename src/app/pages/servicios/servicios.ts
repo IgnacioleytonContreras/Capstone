@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
+import { NavbarComponent } from '../../components/navbar/navbar.component';
 
 @Component({
   selector: 'app-servicios',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, NavbarComponent],
   templateUrl: './servicios.html',
   styleUrl: './servicios.css',
 })
@@ -85,7 +86,7 @@ export class Servicios {
     }
   ];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   reservarHora(): void {
     this.router.navigate(['/reservatuhora']);

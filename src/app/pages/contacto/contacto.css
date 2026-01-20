@@ -1,7 +1,8 @@
+/* Contacto Page Styles */
 .contacto-page {
-  min-height: 100vh;
-  padding: 40px 20px;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background-color: var(--color-bg-body);
+  color: var(--color-text-main);
+  padding: 60px 0 100px;
 }
 
 .container {
@@ -176,4 +177,3 @@
     font-size: 2rem;
   }
 }
-

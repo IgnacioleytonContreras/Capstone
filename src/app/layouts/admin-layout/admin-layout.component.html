@@ -1,36 +1,92 @@
-<div class="admin-layout">
+<div class="admin-layout" id="admin-layout">
   <!-- Sidebar -->
-  <aside class="sidebar" [class.open]="menuOpen">
+  <aside class="sidebar" [class.open]="menuOpen" id="admin-sidebar">
     <div class="sidebar-header">
-      <h2>⚙️ Administración</h2>
-      <button class="close-btn" (click)="closeMenu()" *ngIf="menuOpen">✕</button>
+      <h2>
+        <!-- Logo Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L2 7l10 5 10-5-10-5z" />
+          <path d="M2 17l10 5 10-5" />
+          <path d="M2 12l10 5 10-5" />
+        </svg>
+        AdminPanel
+      </h2>
+      <button class="close-btn" (click)="closeMenu()" *ngIf="menuOpen" id="close-menu-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
     </div>
-    
+
     <nav class="sidebar-nav">
-      <a (click)="navigateTo('/admin/dashboard')" [class.active]="router.url.includes('/admin/dashboard')">
-        <span class="icon">📊</span>
+      <a (click)="navigateTo('/admin/dashboard')" [class.active]="router.url.includes('/admin/dashboard')"
+        id="nav-dashboard">
+        <span class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="9" />
+            <rect x="14" y="3" width="7" height="5" />
+            <rect x="14" y="12" width="7" height="9" />
+            <rect x="3" y="16" width="7" height="5" />
+          </svg>
+        </span>
         <span>Dashboard</span>
       </a>
-      <a (click)="navigateTo('/admin/buscar-mascota')" [class.active]="router.url.includes('/buscar-mascota')">
-        <span class="icon">🔍</span>
+      <a (click)="navigateTo('/admin/buscar-mascota')" [class.active]="router.url.includes('/buscar-mascota')"
+        id="nav-mascotas">
+        <span class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+        </span>
         <span>Buscar Mascota</span>
       </a>
-      <a (click)="navigateTo('/admin/atencion')" [class.active]="router.url.includes('/atencion')">
-        <span class="icon">🩺</span>
+      <a (click)="navigateTo('/admin/atencion')" [class.active]="router.url.includes('/atencion')" id="nav-atencion">
+        <span class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+          </svg>
+        </span>
         <span>Atención Médica</span>
       </a>
-      <a (click)="navigateTo('/admin/registrar-pago')" [class.active]="router.url.includes('/registrar-pago')">
-        <span class="icon">💳</span>
+      <a (click)="navigateTo('/admin/registrar-pago')" [class.active]="router.url.includes('/registrar-pago')"
+        id="nav-pagos">
+        <span class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
+            <line x1="1" y1="10" x2="23" y2="10" />
+          </svg>
+        </span>
         <span>Registrar Pago</span>
       </a>
     </nav>
 
     <div class="sidebar-footer">
       <div class="user-info">
-        <span class="user-name">{{ authService.currentUser()?.name || authService.currentUser()?.email }}</span>
-        <span class="user-role">Administrador</span>
+        <div class="user-avatar">
+          {{ (authService.currentUser()?.name?.[0] || authService.currentUser()?.email?.[0] || 'A') | uppercase }}
+        </div>
+        <div class="user-details">
+          <span class="user-name">{{ authService.currentUser()?.name || authService.currentUser()?.email }}</span>
+          <span class="user-role">Administrador</span>
+        </div>
       </div>
-      <button class="logout-btn" (click)="logout()">Cerrar Sesión</button>
+      <button class="logout-btn" (click)="logout()" id="logout-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+          <polyline points="16 17 21 12 16 7" />
+          <line x1="21" y1="12" x2="9" y2="12" />
+        </svg>
+        Cerrar Sesión
+      </button>
     </div>
   </aside>
 
@@ -38,11 +94,15 @@
   <div class="main-content">
     <!-- Top Bar -->
     <header class="top-bar">
-      <button class="menu-toggle" (click)="toggleMenu()">☰</button>
+      <button class="menu-toggle" (click)="toggleMenu()" id="menu-toggle-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
       <h1>Panel de Administración</h1>
-      <div class="user-badge">
-        <span>{{ authService.currentUser()?.name || authService.currentUser()?.email }}</span>
-      </div>
     </header>
 
     <!-- Page Content -->
@@ -51,4 +111,3 @@
     </main>
   </div>
 </div>
-

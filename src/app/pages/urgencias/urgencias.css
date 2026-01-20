@@ -1,11 +1,11 @@
+/* Urgencias Page Styles */
 .urgencias-page {
-  min-height: 100vh;
-  background: #f8f9fa;
+  background-color: var(--color-bg-body);
+  color: var(--color-text-main);
+  padding-bottom: var(--spacing-12);
 }
 
 .hero-section {
-  background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
-  color: white;
   padding: 80px 20px;
   text-align: center;
   position: relative;
@@ -40,9 +40,12 @@
 }
 
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.05);
   }
@@ -337,3 +340,59 @@
   }
 }
 
+/* TOOLTIPS */
+.tooltip-container {
+  position: relative;
+  cursor: help;
+}
+
+.tooltip-popup {
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%) scale(0.95);
+  background: white;
+  border: 1px solid var(--color-red-100);
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  width: 250px;
+  z-index: 20;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  text-align: left;
+}
+
+.tooltip-popup::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 8px;
+  border-style: solid;
+  border-color: white transparent transparent transparent;
+}
+
+.tooltip-container:hover .tooltip-popup {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) scale(1);
+  pointer-events: auto;
+}
+
+.tooltip-popup h4 {
+  font-size: 0.9rem;
+  color: #dc3545;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.tooltip-popup p {
+  font-size: 0.85rem;
+  color: var(--color-slate-600);
+  line-height: 1.4;
+  margin: 0;
+}

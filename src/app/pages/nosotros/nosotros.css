@@ -1,11 +1,11 @@
+/* Nosotros Page Styles */
 .nosotros-page {
-  min-height: 100vh;
-  background: #f8f9fa;
+  background-color: var(--color-bg-body);
+  color: var(--color-text-main);
+  padding-bottom: var(--spacing-8);
 }
 
 .hero-section {
-  background: linear-gradient(135deg, #0b76a8 0%, #5aa6cf 100%);
-  color: white;
   padding: 80px 20px;
   text-align: center;
 }
@@ -34,7 +34,7 @@
 
 .section-title {
   font-size: 2.2rem;
-  color: #0b76a8;
+  color: var(--color-primary-600);
   text-align: center;
   margin-bottom: 40px;
   font-weight: 700;
@@ -61,13 +61,13 @@
 }
 
 .card h2 {
-  color: #0b76a8;
+  color: var(--color-primary-600);
   font-size: 1.8rem;
   margin: 0 0 20px 0;
 }
 
 .card p {
-  color: #555;
+  color: var(--color-slate-600);
   line-height: 1.8;
   font-size: 1.05rem;
   margin: 0;
@@ -81,7 +81,7 @@
 }
 
 .history-content p {
-  color: #555;
+  color: var(--color-slate-600);
   line-height: 1.8;
   font-size: 1.05rem;
   margin-bottom: 20px;
@@ -117,13 +117,13 @@
 }
 
 .value-card h3 {
-  color: #0b76a8;
+  color: var(--color-primary-600);
   font-size: 1.3rem;
   margin: 0 0 10px 0;
 }
 
 .value-card p {
-  color: #666;
+  color: var(--color-slate-600);
   margin: 0;
   line-height: 1.6;
 }
@@ -154,20 +154,20 @@
 }
 
 .team-card h3 {
-  color: #0b76a8;
+  color: var(--color-primary-600);
   font-size: 1.2rem;
   margin: 0 0 8px 0;
 }
 
 .team-cargo {
-  color: #666;
+  color: var(--color-slate-600);
   font-weight: 600;
   margin: 0 0 8px 0;
   font-size: 0.95rem;
 }
 
 .team-especialidad {
-  color: #999;
+  color: var(--color-slate-400);
   margin: 0;
   font-size: 0.9rem;
 }
@@ -180,7 +180,7 @@
 }
 
 .facilities-content p {
-  color: #555;
+  color: var(--color-slate-600);
   line-height: 1.8;
   font-size: 1.05rem;
   margin-bottom: 25px;
@@ -196,12 +196,12 @@
 }
 
 .facilities-list li {
-  color: #555;
+  color: var(--color-slate-600);
   font-size: 1.05rem;
   padding: 15px;
-  background: #f8f9fa;
+  background: var(--color-slate-50);
   border-radius: 8px;
-  border-left: 4px solid #0b76a8;
+  border-left: 4px solid var(--color-primary-600);
 }
 
 @media (max-width: 968px) {
@@ -232,4 +232,3 @@
     grid-template-columns: 1fr;
   }
 }
-

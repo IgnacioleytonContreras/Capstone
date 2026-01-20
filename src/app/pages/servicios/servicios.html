@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <div class="servicios-page">
   <div class="hero-section">
     <div class="hero-content">
@@ -9,12 +10,12 @@
   <div class="container">
     <div class="services-grid">
       @for (servicio of servicios; track servicio.titulo) {
-        <div class="service-card">
-          <div class="service-icon">{{ servicio.icono }}</div>
-          <h3>{{ servicio.titulo }}</h3>
-          <p class="service-description">{{ servicio.descripcion }}</p>
-          <p class="service-price">{{ servicio.precio }}</p>
-        </div>
+      <div class="service-card">
+        <div class="service-icon">{{ servicio.icono }}</div>
+        <h3>{{ servicio.titulo }}</h3>
+        <p class="service-description">{{ servicio.descripcion }}</p>
+        <p class="service-price">{{ servicio.precio }}</p>
+      </div>
       }
     </div>
 

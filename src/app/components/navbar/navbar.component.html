@@ -1,0 +1,128 @@
+<!-- TOP BAR -->
+<div class="topbar">
+    <div class="container topbar-grid">
+        <div class="top-item">
+            <div class="top-ico">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                    <line x1="16" y1="2" x2="16" y2="6" />
+                    <line x1="8" y1="2" x2="8" y2="6" />
+                    <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+            </div>
+            <div class="top-txt">
+                <div class="top-title">Horas Médicas</div>
+                <div class="top-sub">Reserva Aquí</div>
+            </div>
+        </div>
+
+        <div class="top-item">
+            <div class="top-ico">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                    <line x1="16" y1="13" x2="8" y2="13" />
+                    <line x1="16" y1="17" x2="8" y2="17" />
+                    <polyline points="10 9 9 9 8 9" />
+                </svg>
+            </div>
+            <div class="top-txt">
+                <div class="top-title">Solicitud de</div>
+                <div class="top-sub">Presupuestos</div>
+            </div>
+        </div>
+
+        <div class="top-item">
+            <div class="top-ico">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2 12h20" />
+                    <path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6" />
+                    <path d="M12 2a5 5 0 0 1 5 5v5H7V7a5 5 0 0 1 5-5z" />
+                </svg>
+            </div>
+            <div class="top-txt">
+                <div class="top-title">Laboratorio</div>
+                <div class="top-sub">Resultados en Línea</div>
+            </div>
+        </div>
+
+        <div class="top-item" (click)="irWhatsapp()">
+            <div class="top-ico">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                </svg>
+            </div>
+            <div class="top-txt">
+                <div class="top-title">WhatsApp</div>
+                <div class="top-sub">+56 9 1234 5678</div>
+            </div>
+        </div>
+
+        <div class="top-item" (click)="irAUrgencias()">
+            <div class="top-ico">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                </svg>
+            </div>
+            <div class="top-txt">
+                <div class="top-title">Urgencias</div>
+                <div class="top-sub urgent">24 Horas</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- HEADER / NAV -->
+<header class="header">
+    <div class="container nav">
+        <div class="brand" routerLink="/">
+            <!-- Logo -->
+            <div class="brand-logo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                    <path d="M2 17l10 5 10-5" />
+                    <path d="M2 12l10 5 10-5" />
+                </svg>
+            </div>
+            <div class="brand-name">
+                <span class="brand-main">VETERINARIA ZIFT</span>
+                <span class="brand-sub">CLÍNICA PROFESIONAL</span>
+            </div>
+        </div>
+
+        <button class="menu-btn" (click)="menuOpen = !menuOpen">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12" />
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+        </button>
+
+        <nav class="nav-links" [class.open]="menuOpen">
+            <a routerLink="/" (click)="closeMenu()">Inicio</a>
+            <a (click)="irANosotros()">Nosotros</a>
+            <a (click)="irAUrgencias()">Urgencias</a>
+            <div class="dropdown">
+                <button class="dropbtn" type="button" (click)="toggleServicios()">
+                    Servicios <span class="caret">▾</span>
+                </button>
+                <div class="dropdown-menu" [class.show]="serviciosOpen">
+                    @for (servicio of serviciosList; track $index) {
+                    <button type="button">{{ servicio }}</button>
+                    }
+                </div>
+            </div>
+            <a (click)="irAContacto()">Contacto</a>
+            <a class="admin-link" routerLink="/admin-login" (click)="closeMenu()">Admin</a>
+            <button class="cta" (click)="reservarHora()">Reserva tu hora</button>
+        </nav>
+    </div>
+</header>
