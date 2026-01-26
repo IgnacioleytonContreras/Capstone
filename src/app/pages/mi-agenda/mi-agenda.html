@@ -1,0 +1,68 @@
+<div class="mi-agenda-page">
+  <div class="header">
+    <h1>Mi agenda</h1>
+    <button class="btn-primary" (click)="agendar()">Agendar nueva cita</button>
+  </div>
+
+  <div class="card">
+    <h2>Citas</h2>
+    @if (!citas.length) {
+      <p class="muted">No tienes citas registradas.</p>
+    } @else {
+      <div class="list">
+        @for (c of citas; track c.id) {
+          <div class="item">
+            <div class="title">
+              {{ c.nombreMascota }} • {{ c.fecha }} {{ c.hora }}
+            </div>
+            <div class="sub">k
+              {{ c.servicio }} • Estado: {{ c.estado }}
+            </div>
+            @if (c.monto !== undefined) {
+              <div class="sub">Monto: ${{ c.monto }}</div>
+            }
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+  <div class="card">
+    <h2>Pagos</h2>
+    @if (!pagos.length) {
+      <p class="muted">No tienes pagos registrados.</p>
+    } @else {
+      <div class="list">
+        @for (p of pagos; track p.id) {
+          <div class="item">
+            <div class="title">${{ p.monto }} • {{ p.metodo }}</div>
+            <div class="sub">{{ p.creadoEn | date: 'short' }}</div>
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+  <div class="card">
+    <h2>Historial clínico</h2>
+    @if (!historial.length) {
+      <p class="muted">No hay registros clínicos.</p>
+    } @else {
+      <div class="list">
+        @for (h of historial; track h.id) {
+          <div class="item">
+            <div class="title">{{ h.nombreMascota }} • {{ h.creadoEn | date: 'short' }}</div>
+            <div class="sub"><strong>Diagnóstico:</strong> {{ h.diagnostico }}</div>
+            <div class="sub"><strong>Tratamiento:</strong> {{ h.tratamiento }}</div>
+            @if (h.controlFecha) {
+              <div class="sub"><strong>Control:</strong> {{ h.controlFecha }}</div>
+            }
+            @if (h.observaciones) {
+              <div class="sub"><strong>Observaciones:</strong> {{ h.observaciones }}</div>
+            }
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>

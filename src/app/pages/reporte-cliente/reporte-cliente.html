@@ -1,0 +1,66 @@
+<div class="reporte-page">
+  <div class="card no-print">
+    <div class="header">
+      <div>
+        <h1>Reporte de cliente</h1>
+        <p class="subtitle">Resumen de mascotas, atenciones y pagos</p>
+      </div>
+      <button class="btn-secondary" type="button" (click)="exportar()" [disabled]="!generado">
+        Exportar
+      </button>
+    </div>
+
+    <div class="form-row">
+      <label>Cliente</label>
+      <select [(ngModel)]="seleccionado" (change)="generar()">
+        <option value="">Seleccione</option>
+        @for (c of clientes; track c.email) {
+          <option [value]="c.email">{{ c.nombre }} ({{ c.email }})</option>
+        }
+      </select>
+      <button class="btn-primary" type="button" (click)="generar()">Generar</button>
+    </div>
+  </div>
+
+  @if (generado && clienteSeleccionado) {
+    <div class="card report-card">
+      <h2>Datos del cliente</h2>
+      <p><strong>Nombre:</strong> {{ clienteSeleccionado.nombre }}</p>
+      <p><strong>Email:</strong> {{ clienteSeleccionado.email }}</p>
+
+      <h3>Mascotas</h3>
+      @if (!mascotas.length) {
+        <p class="muted">No hay mascotas registradas.</p>
+      } @else {
+        <ul>
+          @for (m of mascotas; track m.id) {
+            <li>{{ m.nombre }} • {{ m.especie }} • {{ m.raza }}</li>
+          }
+        </ul>
+      }
+
+      <h3>Atenciones</h3>
+      @if (!citasAtendidas.length) {
+        <p class="muted">No existen atenciones asociadas.</p>
+      } @else {
+        <ul>
+          @for (c of citasAtendidas; track c.id) {
+            <li>{{ c.fecha }} {{ c.hora }} • {{ c.servicio }} • {{ c.nombreMascota }}</li>
+          }
+        </ul>
+      }
+
+      <h3>Pagos</h3>
+      @if (!pagos.length) {
+        <p class="muted">No existen pagos asociados.</p>
+      } @else {
+        <ul>
+          @for (p of pagos; track p.id) {
+            <li>${{ p.monto }} • {{ p.metodo }} • {{ p.creadoEn | date: 'short' }}</li>
+          }
+        </ul>
+        <p class="total"><strong>Total pagado:</strong> ${{ totalPagado }}</p>
+      }
+    </div>
+  }
+</div>

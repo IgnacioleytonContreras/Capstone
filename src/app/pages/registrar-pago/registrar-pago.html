@@ -1,0 +1,94 @@
+<div class="pago-page">
+  <div class="card">
+    <div class="header">
+      <div>
+        <h1>Registrar pago</h1>
+        <p class="subtitle">Selecciona la cita y el método de pago</p>
+      </div>
+      <button class="btn-secondary" type="button" (click)="volver()">Volver</button>
+    </div>
+
+    @if (errorMessage) {
+      <div class="error">{{ errorMessage }}</div>
+    }
+    @if (successMessage) {
+      <div class="success">{{ successMessage }}</div>
+    }
+
+    <form [formGroup]="form" (ngSubmit)="registrarPago()" novalidate>
+      <div class="form-grid">
+        <div class="form-group full">
+          <label for="citaId">Cita atendida *</label>
+          <select
+            id="citaId"
+            formControlName="citaId"
+            [class.error]="submitted && f['citaId'].invalid"
+          >
+            <option value="">Seleccione</option>
+            @for (c of citas; track c.id) {
+              <option [value]="c.id">
+                {{ c.nombreMascota }} • {{ c.nombreDueno }} • {{ c.fecha }} {{ c.hora }} • ${{ c.monto ?? 0 }}
+              </option>
+            }
+          </select>
+          @if (submitted && f['citaId'].errors) {
+            <div class="error-message">Selecciona una cita.</div>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="metodo">Método *</label>
+          <select
+            id="metodo"
+            formControlName="metodo"
+            [class.error]="submitted && f['metodo'].invalid"
+          >
+            <option value="">Seleccione</option>
+            @for (m of metodos; track m) {
+              <option [value]="m">{{ m }}</option>
+            }
+          </select>
+          @if (submitted && f['metodo'].errors) {
+            <div class="error-message">Selecciona un método.</div>
+          }
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn-primary" type="submit">Registrar pago</button>
+      </div>
+    </form>
+
+    <div class="payments">
+      <h2>Historial de pagos</h2>
+      <div class="filter">
+        <input
+          type="email"
+          placeholder="Filtrar por email del cliente"
+          [(ngModel)]="filtroEmail"
+        />
+      </div>
+
+      @if (!pagosFiltrados.length) {
+        <p class="muted">No hay pagos registrados.</p>
+      } @else {
+        <div class="payment-list">
+          @for (p of pagosFiltrados; track p.id) {
+            <div class="payment-item">
+              <div>
+                <div class="title">{{ p.ownerName }} • ${{ p.monto }}</div>
+                <div class="sub">
+                  {{ p.metodo }} • {{ p.ownerEmail }} •
+                  {{ p.creadoEn | date: 'short' }}
+                </div>
+              </div>
+              <button class="btn-outline" type="button" (click)="generarComprobante(p)">
+                Comprobante
+              </button>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</div>

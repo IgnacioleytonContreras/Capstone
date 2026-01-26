@@ -1,0 +1,36 @@
+<div class="domicilio-page">
+  <div class="card">
+    <div class="header">
+      <div>
+        <h1>Atención a domicilio</h1>
+        <p class="subtitle">Solicita una visita veterinaria en tu hogar</p>
+      </div>
+    </div>
+
+    <div class="form-grid">
+      <div class="form-group full">
+        <label>Dirección *</label>
+        <input type="text" [(ngModel)]="direccion" placeholder="Ej: Av. Principal 123" />
+      </div>
+      <div class="form-group">
+        <label>Rango horario *</label>
+        <input type="text" [(ngModel)]="rangoHorario" placeholder="Ej: 10:00 - 14:00" />
+      </div>
+      <div class="form-group">
+        <label>Motivo *</label>
+        <input type="text" [(ngModel)]="motivo" placeholder="Ej: Revisión general" />
+      </div>
+    </div>
+
+    @if (successMessage) {
+      <div class="success">{{ successMessage }}</div>
+    }
+    @if (errorMessage) {
+      <div class="error">{{ errorMessage }}</div>
+    }
+
+    <div class="actions">
+      <button class="btn-primary" type="button" (click)="enviar()">Enviar solicitud</button>
+    </div>
+  </div>
+</div>

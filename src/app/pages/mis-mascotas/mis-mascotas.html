@@ -1,0 +1,46 @@
+<div class="mis-mascotas-page">
+  <div class="header">
+    <h1>Mis Mascotas</h1>
+    <button class="btn-primary" (click)="irRegistrarMascota()">Registrar nueva mascota</button>
+  </div>
+
+  @if (!mascotas || mascotas.length === 0) {
+    <div class="empty-state">
+      <p>Aún no tienes mascotas registradas.</p>
+      <button class="btn-secondary" (click)="irRegistrarMascota()">Registrar mi primera mascota</button>
+    </div>
+  } @else {
+    <div class="table-wrapper">
+      <table class="pets-table">
+        <thead>
+          <tr>
+            <th>Nº Ficha</th>
+            <th>Nombre</th>
+            <th>Especie</th>
+            <th>Raza</th>
+            <th>Sexo</th>
+            <th>Fecha Nac.</th>
+            <th>Peso (kg)</th>
+            <th>Detalle</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (m of mascotas; track m.id) {
+            <tr>
+              <td>{{ m.ficha }}</td>
+              <td>{{ m.nombre }}</td>
+              <td>{{ m.especie }}</td>
+              <td>{{ m.raza }}</td>
+              <td>{{ m.sexo }}</td>
+              <td>{{ m.fechaNacimiento }}</td>
+              <td>{{ m.pesoKg }}</td>
+              <td>
+                <button class="btn-link" (click)="verDetalle(m)">Ver ficha</button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

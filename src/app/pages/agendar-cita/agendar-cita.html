@@ -1,0 +1,107 @@
+<div class="agendar-cita-page">
+  <div class="card">
+    <div class="header">
+      <div>
+        <h1>Agendar cita</h1>
+        <p class="subtitle">Completa los datos para reservar una hora</p>
+      </div>
+      <button class="btn-secondary" type="button" (click)="volver()">Ver mi agenda</button>
+    </div>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Nombre del dueño</label>
+        <input type="text" [(ngModel)]="ownerName" placeholder="Ej: Luis Pérez" />
+      </div>
+
+      <div class="form-group">
+        <label>Email *</label>
+        <input type="email" [(ngModel)]="ownerEmail" placeholder="ejemplo@mail.com" />
+      </div>
+
+      <div class="form-group">
+        <label>Teléfono</label>
+        <input type="tel" [(ngModel)]="telefono" placeholder="+56 9 1234 5678" />
+      </div>
+
+      <div class="form-group">
+        <label>Nombre de la mascota *</label>
+        <input type="text" [(ngModel)]="petName" placeholder="Ej: Firu" />
+      </div>
+
+      <div class="form-group">
+        <label>Especie</label>
+        <input type="text" [(ngModel)]="especie" placeholder="Perro, Gato..." />
+      </div>
+
+      <div class="form-group">
+        <label>Servicio</label>
+        <select [(ngModel)]="servicio">
+          <option value="">Seleccione</option>
+          <option value="consultas-generales">Consultas Generales</option>
+          <option value="cirugias">Cirugías</option>
+          <option value="vacunacion">Vacunación</option>
+          <option value="laboratorio">Laboratorio</option>
+          <option value="domicilio">Consulta a domicilio</option>
+          <option value="control">Control</option>
+          <option value="urgencia">Urgencia</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Fecha *</label>
+        <input type="date" [(ngModel)]="date" />
+      </div>
+
+      <div class="form-group">
+        <label>Hora *</label>
+        <input type="time" [(ngModel)]="time" />
+      </div>
+
+      <div class="form-group full">
+        <label>Notas</label>
+        <textarea rows="3" [(ngModel)]="notas" placeholder="Comentarios adicionales"></textarea>
+      </div>
+    </div>
+
+    <div class="availability">
+      <h2>Veterinarios disponibles</h2>
+      @if (disponibilidadesFiltradas.length === 0) {
+        <p class="muted">No hay disponibilidad para la fecha/hora seleccionada.</p>
+      } @else {
+        <div class="list">
+          @for (item of disponibilidadesFiltradas; track item.id) {
+            <label class="item selectable">
+              <input
+                type="radio"
+                name="doctorName"
+                [value]="item.vetName"
+                [(ngModel)]="doctorName"
+              />
+              <div>
+                <div class="title">{{ item.vetName }}</div>
+                <div class="sub">
+                  {{ item.date }} • {{ item.startTime }} - {{ item.endTime }} • Cupos: {{ item.slots }}
+                </div>
+              </div>
+              <span class="badge">Disponible</span>
+            </label>
+          }
+        </div>
+      }
+    </div>
+
+    @if (okMsg) {
+      <div class="success">{{ okMsg }}</div>
+    }
+    @if (errorMsg) {
+      <div class="error-message">{{ errorMsg }}</div>
+    }
+
+    <div class="actions">
+      <button class="btn-primary" type="button" (click)="agendar()" [disabled]="loading">
+        {{ loading ? 'Agendando...' : 'Agendar cita' }}
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+<div class="disponibilidad-page">
+  <div class="header">
+    <div>
+      <h1>Disponibilidad veterinarios</h1>
+      <p class="subtitle">Define horarios y cupos disponibles</p>
+    </div>
+  </div>
+
+  <div class="card form-card">
+    <h2>Registrar disponibilidad</h2>
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Veterinario</label>
+        <input type="text" [(ngModel)]="vetName" placeholder="Ej: Dr. Perez" />
+      </div>
+      <div class="form-group">
+        <label>Fecha</label>
+        <input type="date" [(ngModel)]="date" />
+      </div>
+      <div class="form-group">
+        <label>Desde</label>
+        <input type="time" [(ngModel)]="startTime" />
+      </div>
+      <div class="form-group">
+        <label>Hasta</label>
+        <input type="time" [(ngModel)]="endTime" />
+      </div>
+      <div class="form-group">
+        <label>Cupos</label>
+        <input type="number" [(ngModel)]="slots" min="1" />
+      </div>
+    </div>
+    @if (errorMessage) {
+      <p class="error">{{ errorMessage }}</p>
+    }
+    <div class="actions">
+      <button class="btn-primary" type="button" (click)="agregarDisponibilidad()">Registrar</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Disponibilidad registrada</h2>
+    @if (!items.length) {
+      <p class="muted">No hay disponibilidad registrada.</p>
+    } @else {
+      <div class="list">
+        @for (item of items; track item.id) {
+          <div class="item">
+            <div>
+              <div class="title">{{ item.vetName }}</div>
+              <div class="sub">
+                {{ item.date }} • {{ item.startTime }} - {{ item.endTime }} • Cupos: {{ item.slots }}
+              </div>
+            </div>
+            <button class="btn-danger" type="button" (click)="eliminarDisponibilidad(item)">
+              Eliminar
+            </button>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>

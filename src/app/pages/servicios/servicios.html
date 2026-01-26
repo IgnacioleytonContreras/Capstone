@@ -1,0 +1,44 @@
+<app-navbar></app-navbar>
+<div class="servicios-page">
+  <div class="hero-section">
+    <div class="hero-content">
+      <h1>Nuestros Servicios</h1>
+      <p class="hero-subtitle">Atención integral para el bienestar de tu mascota</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="services-grid">
+      @for (servicio of servicios; track servicio.titulo) {
+      <div class="service-card">
+        <div class="service-icon">{{ servicio.icono }}</div>
+        <h3>{{ servicio.titulo }}</h3>
+        <p class="service-description">{{ servicio.descripcion }}</p>
+        <p class="service-price">{{ servicio.precio }}</p>
+      </div>
+      }
+    </div>
+
+    <div class="cta-section">
+      <h2>¿Necesitas alguno de nuestros servicios?</h2>
+      <p>Reserva tu hora ahora y brinda a tu mascota la atención que se merece</p>
+      <button class="cta-button" (click)="reservarHora()">Reservar Hora</button>
+    </div>
+
+    <!-- Información adicional -->
+    <div class="info-section">
+      <div class="info-card">
+        <h3>💳 Métodos de Pago</h3>
+        <p>Aceptamos efectivo, tarjetas de débito y crédito, y transferencias bancarias.</p>
+      </div>
+      <div class="info-card">
+        <h3>📋 Seguimiento</h3>
+        <p>Después de cada consulta, te proporcionamos un informe detallado del estado de tu mascota.</p>
+      </div>
+      <div class="info-card">
+        <h3>📞 Consultas</h3>
+        <p>Puedes llamarnos para consultar sobre cualquier servicio o solicitar más información.</p>
+      </div>
+    </div>
+  </div>
+</div>

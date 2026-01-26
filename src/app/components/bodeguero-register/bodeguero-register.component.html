@@ -1,0 +1,74 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <h1>Registrar bodeguero</h1>
+      <p>El correo será fijo: {{ bodegueroEmail }}</p>
+    </div>
+
+    @if (registerMessage()) {
+      <div class="success-message">
+        {{ registerMessage() }}
+      </div>
+    }
+    @if (registerError()) {
+      <div class="error-message">
+        {{ registerError() }}
+      </div>
+    }
+
+    <form [formGroup]="registerForm" (ngSubmit)="registrarBodeguero()" class="login-form">
+      <div class="form-group">
+        <label for="bodeguero-email">Correo</label>
+        <input id="bodeguero-email" type="email" [value]="bodegueroEmail" readonly />
+      </div>
+
+      <div class="form-group">
+        <label for="bodeguero-pass">Contraseña</label>
+        <input
+          id="bodeguero-pass"
+          type="password"
+          formControlName="password"
+          placeholder="••••••••"
+          [class.error]="regPassword?.invalid && regPassword?.touched"
+        />
+        @if (regPassword?.invalid && regPassword?.touched) {
+          <span class="error-text">
+            @if (regPassword?.errors?.['required']) {
+              La contraseña es requerida
+            } @else if (regPassword?.errors?.['minlength']) {
+              La contraseña debe tener al menos 6 caracteres
+            }
+          </span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="bodeguero-confirm">Confirmar contraseña</label>
+        <input
+          id="bodeguero-confirm"
+          type="password"
+          formControlName="confirmPassword"
+          placeholder="••••••••"
+          [class.error]="regConfirmPassword?.invalid && regConfirmPassword?.touched"
+        />
+        @if (regConfirmPassword?.invalid && regConfirmPassword?.touched) {
+          <span class="error-text">
+            @if (regConfirmPassword?.errors?.['required']) {
+              La confirmación es requerida
+            } @else if (regConfirmPassword?.errors?.['minlength']) {
+              La contraseña debe tener al menos 6 caracteres
+            }
+          </span>
+        }
+      </div>
+
+      <button type="submit" class="login-button">
+        Registrar bodeguero
+      </button>
+    </form>
+
+    <div class="login-footer">
+      <button class="link-button" type="button" (click)="volver()">Volver al login</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<div class="domicilio-page">
+  <div class="header">
+    <div>
+      <h1>Solicitudes a domicilio</h1>
+      <p class="subtitle">Asigna veterinario y fecha/hora</p>
+    </div>
+  </div>
+
+  @if (!solicitudes.length) {
+    <div class="card">
+      <p class="muted">No hay solicitudes pendientes.</p>
+    </div>
+  } @else {
+    <div class="list">
+      @for (s of solicitudes; track s.id) {
+        <div class="card">
+          <div class="item-head">
+            <div>
+              <div class="title">{{ s.ownerName }} • {{ s.ownerEmail }}</div>
+              <div class="sub">Dirección: {{ s.direccion }}</div>
+              <div class="sub">Rango: {{ s.rangoHorario }} • Motivo: {{ s.motivo }}</div>
+            </div>
+            <span class="badge" [class.ok]="s.estado === 'Programada'">{{ s.estado }}</span>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Veterinario</label>
+              <select [(ngModel)]="s.vetName">
+                <option value="">Seleccione</option>
+                @for (vet of vetOptions; track vet) {
+                  <option [value]="vet">{{ vet }}</option>
+                }
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Fecha/Hora</label>
+              <input type="datetime-local" [(ngModel)]="s.scheduledAt" />
+            </div>
+          </div>
+
+          <div class="actions">
+            <button class="btn-primary" type="button" (click)="programar(s)">Programar</button>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

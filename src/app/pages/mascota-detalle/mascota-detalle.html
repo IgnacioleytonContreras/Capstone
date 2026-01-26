@@ -1,0 +1,80 @@
+<button class="btn-back" (click)="volver()">← Volver</button>
+
+@if (loading) {
+  <p>Cargando...</p>
+} @else if (errorMsg) {
+  <p>{{ errorMsg }}</p>
+}
+
+@if (mascota && !loading) {
+  <div class="detalle-page">
+    <div class="card">
+      <div class="header">
+        <div
+          class="avatar"
+          [class.has-photo]="photoUrl"
+          [style.backgroundImage]="photoUrl ? 'url(' + photoUrl + ')' : 'none'"
+        >
+          @if (!photoUrl) {
+            🐾
+          }
+        </div>
+        <div>
+          <h1>{{ mascota.nombre }}</h1>
+          <p class="subtitle">Ficha #{{ mascota.ficha }}</p>
+        </div>
+      </div>
+
+      <div class="photo-upload">
+        <label class="btn-secondary" for="photoInput">Subir foto</label>
+        <input id="photoInput" type="file" accept="image/*" (change)="onPhotoSelected($event)" />
+      </div>
+
+      <div class="grid">
+        <div class="block">
+          <h2>Datos de la Mascota</h2>
+          <ul>
+            <li><strong>Especie:</strong> {{ mascota.especie }}</li>
+            <li><strong>Raza:</strong> {{ mascota.raza }}</li>
+            <li><strong>Sexo:</strong> {{ mascota.sexo }}</li>
+            <li><strong>Fecha de nacimiento:</strong> {{ mascota.fecha_nacimiento }}</li>
+            <li><strong>Peso:</strong> {{ mascota.peso_kg }} kg</li>
+          </ul>
+        </div>
+
+        <div class="block">
+          <h2>Datos del Dueño</h2>
+          <ul>
+            <li><strong>Nombre:</strong> {{ mascota.dueno }}</li>
+            <li><strong>Email:</strong> {{ mascota.dueno_email }}</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="block">
+        <h2>Historial Clínico</h2>
+        @if (!historial.length) {
+          <p class="historial-placeholder">Sin registros clínicos todavía.</p>
+        } @else {
+          <div class="historial-list">
+            @for (h of historial; track h.id) {
+              <div class="historial-item">
+                <div class="historial-title">
+                  {{ h.creadoEn | date: 'short' }}
+                  @if (h.controlFecha) {
+                    <span class="tag">Control: {{ h.controlFecha }}</span>
+                  }
+                </div>
+                <p><strong>Diagnóstico:</strong> {{ h.diagnostico }}</p>
+                <p><strong>Tratamiento:</strong> {{ h.tratamiento }}</p>
+                @if (h.observaciones) {
+                  <p><strong>Observaciones:</strong> {{ h.observaciones }}</p>
+                }
+              </div>
+            }
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+}

@@ -1,0 +1,108 @@
+<div class="inventario-page">
+  <div class="header">
+    <div>
+      <h1>Inventario</h1>
+      <p class="subtitle">Alertas de stock bajo y productos por vencer</p>
+    </div>
+  </div>
+
+  <div class="card form-card">
+    <h2>Registrar producto</h2>
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Nombre</label>
+        <input type="text" [(ngModel)]="nombre" placeholder="Ej: Vacuna antirrábica" />
+      </div>
+      <div class="form-group">
+        <label>Stock</label>
+        <input type="number" [(ngModel)]="stock" min="0" />
+      </div>
+      <div class="form-group">
+        <label>Stock mínimo</label>
+        <input type="number" [(ngModel)]="stockMinimo" min="0" />
+      </div>
+      <div class="form-group">
+        <label>Fecha vencimiento</label>
+        <input type="date" [(ngModel)]="fechaVencimiento" />
+      </div>
+    </div>
+    @if (errorMessage) {
+      <p class="error">{{ errorMessage }}</p>
+    }
+    <div class="actions">
+      <button class="btn-primary" type="button" (click)="agregarItem()">Registrar</button>
+    </div>
+  </div>
+
+  @if (!hasAlerts) {
+    <div class="card empty-state">
+      <p>No hay alertas pendientes.</p>
+    </div>
+  }
+
+  <div class="card">
+    <h2>Inventario registrado</h2>
+    @if (!items.length) {
+      <p class="muted">No hay productos registrados.</p>
+    } @else {
+      <div class="list">
+        @for (item of items; track item.id) {
+          <div class="item">
+            <div>
+              <div class="title">{{ item.nombre }}</div>
+              <div class="sub">
+                Stock: {{ item.stock }} • Mínimo: {{ item.stockMinimo }}
+                @if (item.fechaVencimiento) {
+                  • Vence: {{ item.fechaVencimiento }}
+                }
+              </div>
+            </div>
+            <button class="btn-danger" type="button" (click)="eliminarItem(item)">
+              Eliminar
+            </button>
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h2>Stock bajo</h2>
+      @if (!lowStock.length) {
+        <p class="muted">No hay productos con stock bajo.</p>
+      } @else {
+        <div class="list">
+          @for (item of lowStock; track item.id) {
+            <div class="item">
+              <div>
+                <div class="title">{{ item.nombre }}</div>
+                <div class="sub">Stock: {{ item.stock }} • Mínimo: {{ item.stockMinimo }}</div>
+              </div>
+              <span class="badge warn">Stock bajo</span>
+            </div>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="card">
+      <h2>Próximos a vencer</h2>
+      @if (!expiringSoon.length) {
+        <p class="muted">No hay productos próximos a vencer.</p>
+      } @else {
+        <div class="list">
+          @for (item of expiringSoon; track item.id) {
+            <div class="item">
+              <div>
+                <div class="title">{{ item.nombre }}</div>
+                <div class="sub">Vence: {{ item.fechaVencimiento }}</div>
+              </div>
+              <span class="badge danger">Por vencer</span>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="domicilio-page">
+  <div class="card">
+    <div class="header">
+      <div>
+        <h1>Mis solicitudes de domicilio</h1>
+        <p class="subtitle">Revisa el estado de tus solicitudes</p>
+      </div>
+    </div>
+
+    @if (!solicitudes.length) {
+      <p class="muted">No tienes solicitudes registradas.</p>
+    } @else {
+      <div class="list">
+        @for (s of solicitudes; track s.id) {
+          <div class="item">
+            <div>
+              <div class="title">{{ s.direccion }}</div>
+              <div class="sub">Rango: {{ s.rangoHorario }} • Motivo: {{ s.motivo }}</div>
+              @if (s.estado === 'Programada') {
+                <div class="sub">
+                  Veterinario: {{ s.vetName }} • Fecha/Hora: {{ s.scheduledAt }}
+                </div>
+              }
+            </div>
+            <span class="badge" [class.ok]="s.estado === 'Programada'">{{ s.estado }}</span>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>

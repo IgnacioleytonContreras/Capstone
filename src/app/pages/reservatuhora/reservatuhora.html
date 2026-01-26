@@ -1,0 +1,132 @@
+<div class="reserva-page">
+  <h1 style="text-align: center; margin-bottom: 30px; color: #0b76a8;">Reserva Tu Hora</h1>
+
+  <!-- Stepper -->
+  <div class="stepper">
+    <div class="step">
+      <div class="step-icon" [class.active]="currentStep === 1" [class.done]="currentStep > 1">1</div>
+      <div class="step-label">Tipo de Consulta</div>
+      <div class="step-line"></div>
+    </div>
+    <div class="step">
+      <div class="step-icon" [class.active]="currentStep === 2" [class.done]="currentStep > 2">2</div>
+      <div class="step-label">Fecha y Hora</div>
+      <div class="step-line"></div>
+    </div>
+    <div class="step">
+      <div class="step-icon" [class.active]="currentStep === 3" [class.done]="currentStep > 3">3</div>
+      <div class="step-label">Datos de Contacto</div>
+    </div>
+  </div>
+
+  <p class="hint" style="text-align: center;">Completa los siguientes pasos para reservar tu hora</p>
+
+  <!-- Paso 1: Tipo de Consulta -->
+  @if (currentStep === 1) {
+    <div class="panel">
+      <div class="panel-title">Selecciona el Tipo de Consulta</div>
+      <div class="panel-body">
+        <div class="tabs">
+          <button class="tab" [class.active]="selectedTab === 'consulta'" (click)="selectTab('consulta')">
+            Consulta General
+          </button>
+          <button class="tab" [class.active]="selectedTab === 'vacuna'" (click)="selectTab('vacuna')">
+            Vacunación
+          </button>
+          <button class="tab" [class.active]="selectedTab === 'cirugia'" (click)="selectTab('cirugia')">
+            Cirugía
+          </button>
+        </div>
+        <button class="btn-primary" (click)="nextStep()">Continuar</button>
+      </div>
+    </div>
+  }
+
+  <!-- Paso 2: Fecha y Hora -->
+  @if (currentStep === 2) {
+    <div class="grid">
+      <div class="panel">
+        <div class="panel-title">Selecciona la Fecha</div>
+        <div class="panel-body">
+          <div class="form-box">
+            <input type="date" [(ngModel)]="fecha" class="field-input" />
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Selecciona la Hora</div>
+        <div class="panel-body">
+          <div class="form-box">
+            <select [(ngModel)]="hora">
+              <option value="">Selecciona una hora</option>
+              <option value="09:00">09:00</option>
+              <option value="10:00">10:00</option>
+              <option value="11:00">11:00</option>
+              <option value="12:00">12:00</option>
+              <option value="14:00">14:00</option>
+              <option value="15:00">15:00</option>
+              <option value="16:00">16:00</option>
+              <option value="17:00">17:00</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-actions">
+      <button class="btn-outline" (click)="prevStep()">Atrás</button>
+      <button class="btn-primary" (click)="nextStep()" style="margin-left: 10px;">Continuar</button>
+    </div>
+  }
+
+  <!-- Paso 3: Datos de Contacto -->
+  @if (currentStep === 3) {
+    <div class="grid">
+      <div class="panel">
+        <div class="panel-title">Datos de la Mascota</div>
+        <div class="panel-body">
+          <div class="field">
+            <label>Nombre de la Mascota</label>
+            <input type="text" [(ngModel)]="nombreMascota" placeholder="Ej: Max" />
+          </div>
+          <div class="field">
+            <label>Tipo de Mascota</label>
+            <select [(ngModel)]="tipoMascota">
+              <option value="">Selecciona</option>
+              <option value="perro">Perro</option>
+              <option value="gato">Gato</option>
+              <option value="otro">Otro</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Datos del Dueño</div>
+        <div class="panel-body">
+          <div class="field">
+            <label>Nombre Completo</label>
+            <input type="text" [(ngModel)]="nombreDueno" placeholder="Tu nombre completo" />
+          </div>
+          <div class="field">
+            <label>Teléfono</label>
+            <input type="tel" [(ngModel)]="telefono" placeholder="+56 9 1234 5678" />
+          </div>
+          <div class="field">
+            <label>Email</label>
+            <input type="email" [(ngModel)]="email" placeholder="correo@ejemplo.com" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-actions">
+      <button class="btn-outline" (click)="prevStep()">Atrás</button>
+      <button class="btn-primary" (click)="submitReserva()" style="margin-left: 10px;">Confirmar Reserva</button>
+    </div>
+    @if (successMessage) {
+      <div class="success" style="margin-top: 16px;">{{ successMessage }}</div>
+    }
+    @if (emailError) {
+      <div class="error-message" style="margin-top: 16px;">{{ emailError }}</div>
+    }
+  }
+</div>
+

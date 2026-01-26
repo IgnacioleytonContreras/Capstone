@@ -1,0 +1,185 @@
+<app-navbar></app-navbar>
+<div class="about-page">
+  <div class="hero-section">
+    <div class="hero-content">
+      <h1>Nosotros</h1>
+      <p class="hero-subtitle">Más de 15 años cuidando la salud de tus mascotas</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Misión y Visión -->
+    <section class="section">
+      <div class="mission-vision">
+        <div class="card">
+          <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <circle cx="12" cy="12" r="6" />
+              <circle cx="12" cy="12" r="2" />
+            </svg>
+          </div>
+          <h2>Nuestra Misión</h2>
+          <p>
+            Proporcionar atención veterinaria de excelencia, con profesionalismo,
+            dedicación y cariño, asegurando el bienestar y la salud de las mascotas
+            que forman parte de las familias chilenas.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+          </div>
+          <h2>Nuestra Visión</h2>
+          <p>
+            Ser la clínica veterinaria de referencia en la región, reconocida por
+            nuestra calidad de servicio, tecnología de vanguardia y compromiso
+            constante con el cuidado animal.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Historia -->
+    <section class="section">
+      <h2 class="section-title">Nuestra Historia</h2>
+      <div class="history-content">
+        <p>
+          Veterinaria Zift fue fundada en 2008 con el objetivo de brindar atención
+          veterinaria integral y de calidad. Desde nuestros inicios, nos hemos
+          comprometido con el bienestar animal y la satisfacción de nuestros clientes.
+        </p>
+        <p>
+          A lo largo de los años, hemos crecido y mejorado constantemente, incorporando
+          tecnología de última generación y ampliando nuestros servicios para ofrecer
+          una atención completa que incluye consultas, cirugías, urgencias 24 horas,
+          hospitalización y más.
+        </p>
+        <p>
+          Nuestro equipo de profesionales altamente capacitados trabaja con pasión
+          y dedicación para brindar el mejor cuidado a cada mascota que llega a
+          nuestras instalaciones.
+        </p>
+      </div>
+    </section>
+
+    <!-- Valores -->
+    <section class="section">
+      <h2 class="section-title">Nuestros Valores</h2>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon">❤️</div>
+          <h3>Compasión</h3>
+          <p>Tratamos a cada mascota con el mismo cariño que le darías tú.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🎓</div>
+          <h3>Profesionalismo</h3>
+          <p>Equipo altamente capacitado y en constante actualización.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🤝</div>
+          <h3>Compromiso</h3>
+          <p>Dedicación total al bienestar de tus mascotas.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">⚡</div>
+          <h3>Disponibilidad</h3>
+          <p>Atención de urgencias 24 horas, cuando más lo necesitas.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🔬</div>
+          <h3>Excelencia</h3>
+          <p>Utilizamos tecnología de vanguardia en todos nuestros servicios.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">💬</div>
+          <h3>Comunicación</h3>
+          <p>Transparencia y claridad en cada diagnóstico y tratamiento.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Equipo -->
+    <section class="section">
+      <h2 class="section-title">Nuestro Equipo</h2>
+      <div class="team-grid">
+        @for (miembro of equipo; track miembro.nombre) {
+        <div class="team-card">
+          <div class="team-avatar">{{ miembro.imagen }}</div>
+          <h3>{{ miembro.nombre }}</h3>
+          <p class="team-cargo">{{ miembro.cargo }}</p>
+          <p class="team-especialidad">{{ miembro.especialidad }}</p>
+        </div>
+        }
+      </div>
+    </section>
+
+    <!-- Instalaciones -->
+    <section class="section">
+      <h2 class="section-title">Nuestras Instalaciones</h2>
+      <div class="facilities-content">
+        <div>
+          <p>
+            Contamos con instalaciones modernas y equipadas con tecnología de última
+            generación para brindar el mejor servicio, diseñadas pensando en la
+            comodidad y seguridad de nuestros pacientes.
+          </p>
+        </div>
+        <ul class="facilities-list">
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+            </svg>
+            Quirófanos equipados para cirugías
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 12h20" />
+              <path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6" />
+              <path d="M12 2a5 5 0 0 1 5 5v5H7V7a5 5 0 0 1 5-5z" />
+            </svg>
+            Laboratorio de análisis clínicos
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18" />
+              <line x1="7" y1="2" x2="7" y2="22" />
+              <line x1="17" y1="2" x2="17" y2="22" />
+              <line x1="2" y1="12" x2="22" y2="12" />
+              <line x1="2" y1="7" x2="7" y2="7" />
+              <line x1="2" y1="17" x2="7" y2="17" />
+              <line x1="17" y1="17" x2="22" y2="17" />
+              <line x1="17" y1="7" x2="22" y2="7" />
+            </svg>
+            Equipos de radiografía y ecografía
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+            </svg>
+            Área de hospitalización confortable
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+            </svg>
+            Sala de urgencias 24 horas
+          </li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</div>

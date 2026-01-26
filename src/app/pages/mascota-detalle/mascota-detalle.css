@@ -1,0 +1,152 @@
+.detalle-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f7fb;
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  max-width: 900px;
+  width: 100%;
+}
+
+.btn-back {
+  background: transparent;
+  border: none;
+  color: #0b76a8;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 16px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  background: #eef4ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+}
+
+.avatar.has-photo {
+  background-color: transparent;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: #0b76a8;
+}
+
+.subtitle {
+  margin: 4px 0 0 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.photo-upload {
+  margin: 12px 0 20px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.photo-upload input[type='file'] {
+  display: none;
+}
+
+.btn-secondary {
+  border: none;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  background: #eef4ff;
+  color: #0b76a8;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.block h2 {
+  margin: 0 0 10px 0;
+  font-size: 1.1rem;
+  color: #0b76a8;
+}
+
+.block ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.block li {
+  margin-bottom: 6px;
+  color: #444;
+  font-size: 0.95rem;
+}
+
+.historial-placeholder {
+  margin: 0;
+  color: #777;
+  font-size: 0.95rem;
+}
+
+.historial-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.historial-item {
+  border: 1px solid #eef3fa;
+  border-radius: 10px;
+  padding: 12px;
+  background: #fafcff;
+}
+
+.historial-title {
+  font-weight: 700;
+  color: #0b76a8;
+  margin-bottom: 6px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  background: #eef4ff;
+  color: #0b76a8;
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
